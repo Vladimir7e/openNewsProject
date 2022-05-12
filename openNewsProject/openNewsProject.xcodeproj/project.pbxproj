@@ -14,6 +14,8 @@
 		8B5302FF28256BEA005D7F2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5302FD28256BEA005D7F2F /* LaunchScreen.storyboard */; };
 		8BA8B82C2827E77D00A111CB /* EmailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8B82A2827E77D00A111CB /* EmailedViewController.swift */; };
 		8BA8B82D2827E77D00A111CB /* EmailedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8B82B2827E77D00A111CB /* EmailedViewController.xib */; };
+		8BA8B83E282D25ED00A111CB /* EmailedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BA8B83C282D25ED00A111CB /* EmailedCollectionViewCell.swift */; };
+		8BA8B83F282D25ED00A111CB /* EmailedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BA8B83D282D25ED00A111CB /* EmailedCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		8B53030028256BEA005D7F2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BA8B82A2827E77D00A111CB /* EmailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailedViewController.swift; sourceTree = "<group>"; };
 		8BA8B82B2827E77D00A111CB /* EmailedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailedViewController.xib; sourceTree = "<group>"; };
+		8BA8B83C282D25ED00A111CB /* EmailedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailedCollectionViewCell.swift; sourceTree = "<group>"; };
+		8BA8B83D282D25ED00A111CB /* EmailedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailedCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,10 +66,12 @@
 				8B5302F128256BE8005D7F2F /* SceneDelegate.swift */,
 				8B5302FB28256BE9005D7F2F /* Assets.xcassets */,
 				8B5302FD28256BEA005D7F2F /* LaunchScreen.storyboard */,
-				8B53030028256BEA005D7F2F /* Info.plist */,
-				8B5302F828256BE8005D7F2F /* openNewsProject.xcdatamodeld */,
 				8BA8B82A2827E77D00A111CB /* EmailedViewController.swift */,
 				8BA8B82B2827E77D00A111CB /* EmailedViewController.xib */,
+				8B53030028256BEA005D7F2F /* Info.plist */,
+				8B5302F828256BE8005D7F2F /* openNewsProject.xcdatamodeld */,
+				8BA8B83C282D25ED00A111CB /* EmailedCollectionViewCell.swift */,
+				8BA8B83D282D25ED00A111CB /* EmailedCollectionViewCell.xib */,
 			);
 			path = openNewsProject;
 			sourceTree = "<group>";
@@ -130,6 +136,7 @@
 			files = (
 				8B5302FF28256BEA005D7F2F /* LaunchScreen.storyboard in Resources */,
 				8BA8B82D2827E77D00A111CB /* EmailedViewController.xib in Resources */,
+				8BA8B83F282D25ED00A111CB /* EmailedCollectionViewCell.xib in Resources */,
 				8B5302FC28256BE9005D7F2F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,6 +151,7 @@
 				8B5302F028256BE8005D7F2F /* AppDelegate.swift in Sources */,
 				8B5302FA28256BE8005D7F2F /* openNewsProject.xcdatamodeld in Sources */,
 				8BA8B82C2827E77D00A111CB /* EmailedViewController.swift in Sources */,
+				8BA8B83E282D25ED00A111CB /* EmailedCollectionViewCell.swift in Sources */,
 				8B5302F228256BE8005D7F2F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

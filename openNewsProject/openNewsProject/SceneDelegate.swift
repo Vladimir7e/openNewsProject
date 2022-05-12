@@ -12,19 +12,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        
+
         window = UIWindow(windowScene: windowScene)
 
         let tabBarController = UITabBarController()
         let emailedNavigationController = UINavigationController.init(rootViewController: EmailedViewController())
-        
+
         tabBarController.viewControllers = [emailedNavigationController]
-        
+
         let emailedItem = UITabBarItem(title: "Most emailed", image: nil, tag: 0)
         emailedNavigationController.tabBarItem = emailedItem
-        
+
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
