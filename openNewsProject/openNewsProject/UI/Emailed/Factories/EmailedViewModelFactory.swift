@@ -40,7 +40,7 @@ final class EmailedViewModelFactory: IEmailedViewModelFactory {
             id: newsModel.id,
             imagePath: newsModel.url,
             title: newsModel.title,
-            description: newsModel.publishedDate ?? "non set",
+            description: newsModel.publishedDate,
             tapAction: { [weak actions] in
                 actions?.didTapDefaultCell()
             }

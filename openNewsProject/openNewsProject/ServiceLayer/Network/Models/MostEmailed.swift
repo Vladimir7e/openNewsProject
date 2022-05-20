@@ -16,7 +16,7 @@ struct MostEmailed: Decodable {
     let id: Int
     let type: String?
     let title: String
-    let publishedDate: String?
+    let publishedDate: String
 //    let media: [Media]
     
     enum CodingKeys: String, CodingKey {

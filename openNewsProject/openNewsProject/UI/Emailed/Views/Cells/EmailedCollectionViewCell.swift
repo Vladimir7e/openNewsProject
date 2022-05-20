@@ -29,6 +29,7 @@ class EmailedCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSiz
 
     func setup(viewModel: NewsCellViewModel) {
         titleLabel?.text = viewModel.title
+        descriptionLabel?.text = viewModel.description
     }
 
     // MARK: - CellSizeProtocol
