@@ -18,6 +18,7 @@ class EmailedCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSiz
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()

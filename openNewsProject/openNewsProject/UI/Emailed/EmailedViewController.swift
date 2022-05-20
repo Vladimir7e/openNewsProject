@@ -12,7 +12,7 @@ protocol IEmailedViewController: AnyObject {
     func setupTopContainer(with viewModel: EmailedTopContainerViewModel)
 }
 
-class EmailedViewController: UIViewController {
+final class EmailedViewController: UIViewController {
 
     // Dependencies
     private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
@@ -49,8 +49,8 @@ class EmailedViewController: UIViewController {
     }
 
     private func setup() {
-        let nibCell = UINib(nibName: "EmailedCollectionViewCell", bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: "EmailedCollectionViewCell")
+        let nibCell = UINib(nibName: String(describing: EmailedCollectionViewCell.self), bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: String(describing: EmailedCollectionViewCell.self))
 
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -73,7 +73,7 @@ extension EmailedViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmailedCollectionViewCell", for: indexPath) as! EmailedCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: EmailedCollectionViewCell.self), for: indexPath) as? EmailedCollectionViewCell else { return UICollectionViewCell() }
 
         let mostEmailed = presenter.viewModel.cellModels[indexPath.row]
         switch mostEmailed {
