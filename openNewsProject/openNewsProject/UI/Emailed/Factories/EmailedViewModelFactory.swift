@@ -38,7 +38,7 @@ final class EmailedViewModelFactory: IEmailedViewModelFactory {
     private func makeDefaultCellModel(newsModel: MostEmailed, actions: EmailedActions) -> NewsCellViewModel {
         .init(
             id: newsModel.id,
-            imagePath: newsModel.url,
+            imagePath: newsModel.media.first?.mediaMetadata.first?.url,
             title: newsModel.title,
             description: newsModel.publishedDate,
             tapAction: { [weak actions] in

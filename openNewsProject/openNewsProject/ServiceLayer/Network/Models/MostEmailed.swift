@@ -17,7 +17,7 @@ struct MostEmailed: Decodable {
     let type: String?
     let title: String
     let publishedDate: String
-//    let media: [Media]
+    let media: [Media]
     
     enum CodingKeys: String, CodingKey {
         case url
@@ -25,7 +25,7 @@ struct MostEmailed: Decodable {
         case type
         case title
         case publishedDate = "published_date"
-//        case media
+        case media
     }
 }
 
@@ -34,7 +34,7 @@ struct Media: Decodable {
     let subtype: String?
     let caption: String?
     let copyright: String?
-    let approvedForSyndication: String?
+    let approvedForSyndication: Int?
     let mediaMetadata: [MediaMetadata]
     
     enum CodingKeys: String, CodingKey {

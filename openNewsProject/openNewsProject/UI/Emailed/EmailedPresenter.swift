@@ -51,6 +51,34 @@ class EmailedPresenter {
             }
         }
     }
+    
+    private func getMostShared() {
+        networkService.getMostShared { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self?.updateModel(with: response.results)
+                    self?.view?.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    private func getMostviewed() {
+        networkService.getMostViewed { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    self?.updateModel(with: response.results)
+                    self?.view?.reloadData()
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
+    }
 
     private func updateModel(with mostEmailed: [MostEmailed]) {
         viewModel = viewModelFactory.makeViewModel(newsModels: mostEmailed, actions: self)

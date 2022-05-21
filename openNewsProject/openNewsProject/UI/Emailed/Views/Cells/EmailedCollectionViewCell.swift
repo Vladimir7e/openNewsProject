@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 private extension CGFloat {
     static let inset: CGFloat = 20
@@ -30,6 +31,11 @@ class EmailedCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSiz
     func setup(viewModel: NewsCellViewModel) {
         titleLabel?.text = viewModel.title
         descriptionLabel?.text = viewModel.description
+        imageView?.kf.indicatorType = .activity
+        guard let imagePath: String = viewModel.imagePath else {
+            return
+        }
+        imageView?.kf.setImage(with: URL(string: imagePath))
     }
 
     // MARK: - CellSizeProtocol
