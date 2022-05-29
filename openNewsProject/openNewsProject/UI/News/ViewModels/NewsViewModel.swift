@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct EmailedViewModel {
-    static let empty: EmailedViewModel = .init(cellModels: [])
+struct NewsViewModel {
+    static let empty: NewsViewModel = .init(cellModels: [])
     
-    let cellModels: [EmailedCellViewModel]
+    let cellModels: [CellViewModel]
 }
 
-enum EmailedCellViewModel {
+enum CellViewModel {
     case defaultCell(NewsCellViewModel)
 }

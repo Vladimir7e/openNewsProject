@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct MostEmailedResponseModel: Decodable {
-    let results: [MostEmailed]
+struct NewsResponseModel: Decodable {
+    let results: [News]
 }
 
-struct MostEmailed: Decodable {
+struct News: Decodable {
     let url: String?
     let id: Int
     let type: String?

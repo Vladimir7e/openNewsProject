@@ -13,7 +13,7 @@ private extension CGFloat {
     static let interItemSpacing: CGFloat = 20
 }
 
-class EmailedCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizeProtocol {
+class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizeProtocol {
 
     // UI elements
     @IBOutlet weak var titleLabel: UILabel!

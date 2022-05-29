@@ -18,12 +18,7 @@ final class TabBarViewControllersResolver: ITabBarViewControllersResolver {
     func resolveViewController(
         type: TabBarItemType
     ) -> UIViewController {
-        switch type {
-        case .emailed:
-            return EmailedAssembly().assemble()
-        default:
-            return EmailedAssembly().assemble() // temporary
-        }
+        NewsAssembly().assemble(newsType: type)
     }
 }
 

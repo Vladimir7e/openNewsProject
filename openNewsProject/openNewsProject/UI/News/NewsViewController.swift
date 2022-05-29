@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol IEmailedViewController: AnyObject {
+protocol INewsViewController: AnyObject {
     func reloadData()
-    func setupTopContainer(with viewModel: EmailedTopContainerViewModel)
+    func setupTopContainer(with viewModel: NewsTopContainerViewModel)
 }
 
-final class EmailedViewController: UIViewController {
+final class NewsViewController: UIViewController {
 
     // Dependencies
     private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
-    private let presenter: IEmailedPresenter
-    private let cellTypeResolver: IEmailedCellTypeResolver
+    private let presenter: INewsPresenter
+    private let cellTypeResolver: INewsCellTypeResolver
 
     // MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
@@ -25,8 +25,8 @@ final class EmailedViewController: UIViewController {
     // MARK: - Initialization
 
     init(
-        presenter: IEmailedPresenter,
-        cellTypeResolver: IEmailedCellTypeResolver
+        presenter: INewsPresenter,
+        cellTypeResolver: INewsCellTypeResolver
     ) {
         self.presenter = presenter
         self.cellTypeResolver = cellTypeResolver
@@ -49,45 +49,45 @@ final class EmailedViewController: UIViewController {
     }
 
     private func setup() {
-        let nibCell = UINib(nibName: String(describing: EmailedCollectionViewCell.self), bundle: nil)
-        collectionView.register(nibCell, forCellWithReuseIdentifier: String(describing: EmailedCollectionViewCell.self))
+        let nibCell = UINib(nibName: String(describing: NewsCollectionViewCell.self), bundle: nil)
+        collectionView.register(nibCell, forCellWithReuseIdentifier: String(describing: NewsCollectionViewCell.self))
 
         collectionView.delegate = self
         collectionView.dataSource = self
     }
 }
 
-extension EmailedViewController: IEmailedViewController {
+extension NewsViewController: INewsViewController {
     func reloadData() {
         collectionView.reloadData()
     }
 
-    func setupTopContainer(with viewModel: EmailedTopContainerViewModel) {
+    func setupTopContainer(with viewModel: NewsTopContainerViewModel) {
         navigationItem.title = viewModel.title
     }
 }
 
-extension EmailedViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.viewModel.cellModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: EmailedCollectionViewCell.self), for: indexPath) as? EmailedCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: NewsCollectionViewCell.self), for: indexPath) as? NewsCollectionViewCell else { return UICollectionViewCell() }
 
-        let mostEmailed = presenter.viewModel.cellModels[indexPath.row]
-        switch mostEmailed {
-        case .defaultCell(let cellModel):
-            cell.setup(viewModel: cellModel)
+        let cellModel = presenter.viewModel.cellModels[indexPath.row]
+        switch cellModel {
+        case .defaultCell(let cellViewModel):
+            cell.setup(viewModel: cellViewModel)
         }
 
         return cell
     }
 }
 
-extension EmailedViewController: UICollectionViewDelegateFlowLayout {
+extension NewsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cellModel: EmailedCellViewModel = presenter.viewModel.cellModels[indexPath.row]
+        let cellModel: CellViewModel = presenter.viewModel.cellModels[indexPath.row]
         let cellType: (ViewIdentifiable & CellSizeProtocol).Type = cellTypeResolver.resolveCellType(
             for: cellModel
         )

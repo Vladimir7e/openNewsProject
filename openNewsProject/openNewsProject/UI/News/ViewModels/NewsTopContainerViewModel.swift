@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct EmailedTopContainerViewModel {
+struct NewsTopContainerViewModel {
     let title: String
 }

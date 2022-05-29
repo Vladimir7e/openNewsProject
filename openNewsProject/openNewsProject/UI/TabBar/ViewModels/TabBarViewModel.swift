@@ -14,7 +14,7 @@ struct TabBarViewModel {
 
 enum TabBarItemType: Int {
     case emailed
-    case popular
+    case shared
     case viewed
     case favorive
 }

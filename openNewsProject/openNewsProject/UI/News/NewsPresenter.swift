@@ -6,37 +6,55 @@
 //
 
 import Foundation
+import UIKit
 
-protocol EmailedActions: AnyObject {
+protocol NewsActions: AnyObject {
     func didTapDefaultCell()
 }
 
-protocol IEmailedPresenter: AnyObject {
+protocol INewsPresenter: AnyObject {
     func viewDidLoad()
-    var viewModel: EmailedViewModel { get }
+    var viewModel: NewsViewModel { get }
 }
 
-class EmailedPresenter {
+class NewsPresenter {
 
     // Dependencies
-    weak var view: IEmailedViewController?
-    let networkService: EmailedNetworkServiceProtocol
-    let viewModelFactory: IEmailedViewModelFactory
-
+    weak var view: INewsViewController?
+    let networkService: NewsNetworkServiceProtocol
+    let viewModelFactory: INewsViewModelFactory
+    
+    let newsType: TabBarItemType
+    
     // Properties
-    private(set) var viewModel: EmailedViewModel = .empty
+    private(set) var viewModel: NewsViewModel = .empty
 
     // MARK: - Initialization
 
     init(
-        networkService: EmailedNetworkServiceProtocol,
-        viewModelFactory: IEmailedViewModelFactory
+        networkService: NewsNetworkServiceProtocol,
+        viewModelFactory: INewsViewModelFactory,
+        newsType: TabBarItemType
     ) {
         self.networkService = networkService
         self.viewModelFactory = viewModelFactory
+        self.newsType = newsType
     }
 
     // MARK: - Private
+
+    private func getNews() {
+        switch newsType {
+        case .emailed:
+            getMostEmailed()
+        case .shared:
+            getMostShared()
+        case .viewed:
+            getMostviewed()
+        case .favorive:
+            break
+        }
+    }
 
     private func getMostEmailed() {
         networkService.getMostEmailed { [weak self] result in
@@ -80,18 +98,19 @@ class EmailedPresenter {
         }
     }
 
-    private func updateModel(with mostEmailed: [MostEmailed]) {
-        viewModel = viewModelFactory.makeViewModel(newsModels: mostEmailed, actions: self)
+    private func updateModel(with news: [News]) {
+        viewModel = viewModelFactory.makeViewModel(newsModels: news, actions: self)
     }
 }
 
-extension EmailedPresenter: IEmailedPresenter {
+extension NewsPresenter: INewsPresenter {
     func viewDidLoad() {
-        getMostEmailed()
+        view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
+        getNews()
     }
 }
 
-extension EmailedPresenter: EmailedActions {
+extension NewsPresenter: NewsActions {
     func didTapDefaultCell() {
         print(#function)
     }
