@@ -23,7 +23,6 @@ final class NewsViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
 
     // MARK: - Initialization
-
     init(
         presenter: INewsPresenter,
         cellTypeResolver: INewsCellTypeResolver
@@ -31,7 +30,6 @@ final class NewsViewController: UIViewController {
         self.presenter = presenter
         self.cellTypeResolver = cellTypeResolver
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +37,6 @@ final class NewsViewController: UIViewController {
     }
 
     // MARK: - Life cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -82,6 +79,15 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
 
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let cellModel = presenter.viewModel.cellModels[indexPath.row]
+        switch cellModel {
+        case .defaultCell(let cellModel):
+            cellModel.tapAction()
+        }
     }
 }
 

@@ -7,25 +7,34 @@
 
 import UIKit
 
-final class NewsAssembly {
+protocol INewsAssembly {
+    func assemble(newsType: TabBarItemType) -> UIViewController
+}
+
+final class NewsAssembly: INewsAssembly {
     
     func assemble(newsType: TabBarItemType) -> UIViewController {
-//        let homeViewModelFactory: HomeViewModelFactory = HomeViewModelFactory()
-//        let router: HomeRouter = HomeRouter()
+        let detailAssembly: DetailAssembly = DetailAssembly()
+        let router: NewsRouter = NewsRouter(detailAssembly: detailAssembly)
         let networkService: NewsNetworkService = NewsNetworkService()
         let viewModelFactory: NewsViewModelFactory = NewsViewModelFactory()
+        
         let presenter: NewsPresenter = NewsPresenter(
             networkService: networkService,
             viewModelFactory: viewModelFactory,
+            router: router,
             newsType: newsType
         )
+        
         let cellTypeResolver: NewsCellTypeResolver = NewsCellTypeResolver()
+        
         let view: NewsViewController = NewsViewController(
             presenter: presenter,
             cellTypeResolver: cellTypeResolver
         )
+        
         presenter.view = view
-//        router.transitionHandler = view
+        router.transitionHandler = view
 
         return view
     }

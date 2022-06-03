@@ -12,7 +12,7 @@ struct NewsResponseModel: Decodable {
 }
 
 struct News: Decodable {
-    let url: String?
+    let url: String
     let id: Int
     let type: String?
     let title: String

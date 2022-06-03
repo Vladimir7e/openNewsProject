@@ -56,7 +56,7 @@ final class NewsViewModelFactory: INewsViewModelFactory {
             title: newsModel.title,
             description: newsModel.publishedDate,
             tapAction: { [weak actions] in
-                actions?.didTapDefaultCell()
+                actions?.didTapDefaultCell(detailViewModel: .init(title: newsModel.title, url: newsModel.url))
             }
         )
     }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol NewsActions: AnyObject {
-    func didTapDefaultCell()
+    func didTapDefaultCell(detailViewModel: DetailViewModel)
 }
 
 protocol INewsPresenter: AnyObject {
@@ -21,8 +21,9 @@ class NewsPresenter {
 
     // Dependencies
     weak var view: INewsViewController?
-    let networkService: NewsNetworkServiceProtocol
-    let viewModelFactory: INewsViewModelFactory
+   private let networkService: NewsNetworkServiceProtocol
+   private let viewModelFactory: INewsViewModelFactory
+   private let router: INewsRouter
     
     let newsType: TabBarItemType
     
@@ -34,10 +35,12 @@ class NewsPresenter {
     init(
         networkService: NewsNetworkServiceProtocol,
         viewModelFactory: INewsViewModelFactory,
+        router: INewsRouter,
         newsType: TabBarItemType
     ) {
         self.networkService = networkService
         self.viewModelFactory = viewModelFactory
+        self.router = router
         self.newsType = newsType
     }
 
@@ -111,7 +114,7 @@ extension NewsPresenter: INewsPresenter {
 }
 
 extension NewsPresenter: NewsActions {
-    func didTapDefaultCell() {
-        print(#function)
+    func didTapDefaultCell(detailViewModel: DetailViewModel) {
+        router.showDetailScreen(detailViewModel: detailViewModel)
     }
 }
