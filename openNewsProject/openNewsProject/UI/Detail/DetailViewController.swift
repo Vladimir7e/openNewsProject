@@ -7,6 +7,7 @@
 
 import UIKit
 import WebKit
+import CoreData
 
 protocol IDetailViewController: AnyObject {
     func setup(with viewModel: DetailViewModel)
@@ -17,7 +18,6 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     
     // Dependencies
     private let presenter: IDetailPresenter
-
     // MARK: - IBOutlet
     @IBOutlet weak var webView: WKWebView!
     
@@ -42,13 +42,23 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func setup() {
+        setupNavigation()
         setupWebView()
+    }
+    
+    private func setupNavigation() {
+        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .save , target: self, action: #selector(favorites))
     }
     
     private func setupWebView() {
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
     }
+    
+    @objc private func favorites() {
+        presenter.didTapSaveButton()
+    }
+    
 }
 
 extension DetailViewController: IDetailViewController {

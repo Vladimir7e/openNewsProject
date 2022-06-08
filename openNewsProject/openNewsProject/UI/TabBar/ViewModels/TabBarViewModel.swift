@@ -16,5 +16,6 @@ enum TabBarItemType: Int {
     case emailed
     case shared
     case viewed
-    case favorive
+    case favorites
 }
+

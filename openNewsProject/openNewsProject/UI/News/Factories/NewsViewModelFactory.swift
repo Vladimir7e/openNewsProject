@@ -9,6 +9,7 @@ import UIKit
 
 protocol INewsViewModelFactory {
     func makeViewModel(newsModels: [News], actions: NewsActions) -> NewsViewModel
+    func makeViewModelFavorites(model: [DetailViewModel], actions: NewsActions) -> NewsViewModel
     func makeTopContainerViewModel(newsType: TabBarItemType) -> NewsTopContainerViewModel
 }
 
@@ -19,6 +20,11 @@ final class NewsViewModelFactory: INewsViewModelFactory {
     func makeViewModel(newsModels: [News], actions: NewsActions) -> NewsViewModel {
         .init(cellModels: makeCellModels(newsModels: newsModels, actions: actions))
     }
+    
+    func makeViewModelFavorites(model: [DetailViewModel], actions: NewsActions) -> NewsViewModel {
+        .init(cellModels: makeCellModelsFavorites(model: model, actions: actions))
+    }
+
 
     func makeTopContainerViewModel(newsType: TabBarItemType) -> NewsTopContainerViewModel {
         switch newsType {
@@ -28,8 +34,8 @@ final class NewsViewModelFactory: INewsViewModelFactory {
             return .init(title: "Most Shared")
         case .viewed:
             return .init(title: "Most Viewed")
-        case .favorive:
-            return .init(title: "Favorite")
+        case .favorites:
+            return .init(title: "Favorites")
         }
     }
 
@@ -48,6 +54,20 @@ final class NewsViewModelFactory: INewsViewModelFactory {
 
         return cellModels
     }
+    
+    private func makeCellModelsFavorites(model: [DetailViewModel], actions: NewsActions) -> [CellViewModel] {
+        var cellModels: [CellViewModel] = []
+
+        model.forEach {
+            cellModels.append(
+                .defaultCell(
+                    makeDefaultCellModelFavorites(model: $0, actions: actions)
+                )
+            )
+        }
+
+        return cellModels
+    }
 
     private func makeDefaultCellModel(newsModel: News, actions: NewsActions) -> NewsCellViewModel {
         .init(
@@ -56,7 +76,29 @@ final class NewsViewModelFactory: INewsViewModelFactory {
             title: newsModel.title,
             description: newsModel.publishedDate,
             tapAction: { [weak actions] in
-                actions?.didTapDefaultCell(detailViewModel: .init(title: newsModel.title, url: newsModel.url))
+                actions?.didTapDefaultCell(detailViewModel: .init(
+                    id: newsModel.id,
+                    title: newsModel.title,
+                    url: newsModel.url,
+                    imagePath: newsModel.media.first?.mediaMetadata.first?.url,
+                    publishedDate: newsModel.publishedDate))
+            }
+        )
+    }
+    
+    private func makeDefaultCellModelFavorites(model: DetailViewModel, actions: NewsActions) -> NewsCellViewModel {
+        .init(
+            id: model.id,
+            imagePath: model.imagePath,
+            title: model.title,
+            description: model.publishedDate,
+            tapAction: { [weak actions] in
+                actions?.didTapDefaultCell(detailViewModel: .init(
+                    id: model.id,
+                    title: model.title,
+                    url: model.url,
+                    imagePath: model.imagePath,
+                    publishedDate: model.publishedDate))
             }
         )
     }

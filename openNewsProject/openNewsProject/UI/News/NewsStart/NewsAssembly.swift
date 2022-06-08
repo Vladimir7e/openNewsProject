@@ -18,12 +18,14 @@ final class NewsAssembly: INewsAssembly {
         let router: NewsRouter = NewsRouter(detailAssembly: detailAssembly)
         let networkService: NewsNetworkService = NewsNetworkService()
         let viewModelFactory: NewsViewModelFactory = NewsViewModelFactory()
+        let storage: Storage = Storage()
         
         let presenter: NewsPresenter = NewsPresenter(
             networkService: networkService,
             viewModelFactory: viewModelFactory,
             router: router,
-            newsType: newsType
+            newsType: newsType,
+            storage: storage
         )
         
         let cellTypeResolver: NewsCellTypeResolver = NewsCellTypeResolver()

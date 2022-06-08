@@ -21,9 +21,10 @@ class NewsPresenter {
 
     // Dependencies
     weak var view: INewsViewController?
-   private let networkService: NewsNetworkServiceProtocol
-   private let viewModelFactory: INewsViewModelFactory
-   private let router: INewsRouter
+    private let networkService: NewsNetworkServiceProtocol
+    private let viewModelFactory: INewsViewModelFactory
+    private let router: INewsRouter
+    private let storage: Storable
     
     let newsType: TabBarItemType
     
@@ -36,12 +37,14 @@ class NewsPresenter {
         networkService: NewsNetworkServiceProtocol,
         viewModelFactory: INewsViewModelFactory,
         router: INewsRouter,
-        newsType: TabBarItemType
+        newsType: TabBarItemType,
+        storage: Storable
     ) {
         self.networkService = networkService
         self.viewModelFactory = viewModelFactory
         self.router = router
         self.newsType = newsType
+        self.storage = storage
     }
 
     // MARK: - Private
@@ -54,8 +57,8 @@ class NewsPresenter {
             getMostShared()
         case .viewed:
             getMostviewed()
-        case .favorive:
-            break
+        case .favorites:
+            getFavorites()
         }
     }
 
@@ -99,6 +102,10 @@ class NewsPresenter {
                 }
             }
         }
+    }
+    
+    private func getFavorites() {
+        viewModel = viewModelFactory.makeViewModelFavorites(model: storage.fetchData(), actions: self)
     }
 
     private func updateModel(with news: [News]) {

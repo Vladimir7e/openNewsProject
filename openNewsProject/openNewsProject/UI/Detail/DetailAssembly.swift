@@ -15,10 +15,12 @@ final class DetailAssembly: IDetailAssembly {
     
     func assemble(detailViewModel: DetailViewModel) -> UIViewController {
         let networkService: NewsNetworkService = NewsNetworkService()
+        let storage: Storage = Storage()
 
         let presenter: DetailPresenter = DetailPresenter(
             networkService: networkService,
-            viewModel: detailViewModel
+            viewModel: detailViewModel,
+            storage: storage
         )
         
         let view: DetailViewController = DetailViewController(presenter: presenter)

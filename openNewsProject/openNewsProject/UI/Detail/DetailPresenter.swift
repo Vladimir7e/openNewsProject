@@ -10,6 +10,7 @@ import UIKit
 
 protocol IDetailPresenter: AnyObject {
     func viewDidLoad()
+    func didTapSaveButton()
 
 }
 
@@ -19,15 +20,18 @@ class DetailPresenter {
     weak var view: IDetailViewController?
     private let networkService: NewsNetworkServiceProtocol
     private let viewModel: DetailViewModel
+    private let storage: Storable
 
     // MARK: - Initialization
 
     init(
         networkService: NewsNetworkServiceProtocol,
-        viewModel: DetailViewModel
+        viewModel: DetailViewModel,
+        storage: Storable
     ) {
         self.networkService = networkService
         self.viewModel = viewModel
+        self.storage = storage
     }
 }
 
@@ -37,5 +41,10 @@ extension DetailPresenter: IDetailPresenter {
         view?.setup(with: viewModel)
         
     }
+    
+    func didTapSaveButton() {
+        storage.save(model: viewModel)
+    }
+    
 }
 

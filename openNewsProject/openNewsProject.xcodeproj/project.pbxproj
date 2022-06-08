@@ -20,6 +20,7 @@
 		8B5302FC28256BE9005D7F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5302FB28256BE9005D7F2F /* Assets.xcassets */; };
 		8B5302FF28256BEA005D7F2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5302FD28256BEA005D7F2F /* LaunchScreen.storyboard */; };
 		8B96CC1C28492E17001D43F5 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */; };
+		8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1D284E3F58001D43F5 /* Storage.swift */; };
 		8B996DB1284623A4003305CE /* NewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB0284623A4003305CE /* NewsRouter.swift */; };
 		8B996DB428463640003305CE /* DetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB328463640003305CE /* DetailAssembly.swift */; };
 		8B996DB628463658003305CE /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB528463658003305CE /* DetailPresenter.swift */; };
@@ -59,6 +60,7 @@
 		8B5302FE28256BEA005D7F2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B53030028256BEA005D7F2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		8B96CC1D284E3F58001D43F5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8B996DB0284623A4003305CE /* NewsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
 		8B996DB328463640003305CE /* DetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembly.swift; sourceTree = "<group>"; };
 		8B996DB528463658003305CE /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				8BC63073283564670012A75E /* Network */,
 				8BC6305228355C500012A75E /* FlowCoordinator */,
+				8B96CC1F284E3F6C001D43F5 /* Storage */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -189,6 +192,14 @@
 				8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8B96CC1F284E3F6C001D43F5 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8B96CC1D284E3F58001D43F5 /* Storage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		8B996DB22846346A003305CE /* Detail */ = {
@@ -458,6 +469,7 @@
 				8B5302F028256BE8005D7F2F /* AppDelegate.swift in Sources */,
 				8B1393E12844BB7D0067D0A2 /* DetailViewController.swift in Sources */,
 				8B4B004C2836CFD000366322 /* NewsViewModelFactory.swift in Sources */,
+				8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */,
 				8BC6306128355F8C0012A75E /* TabBarPresenter.swift in Sources */,
 				8B3CB5E2282E3AE8009F2651 /* NewsPresenter.swift in Sources */,
 				8BC6305D28355F750012A75E /* TabBarAssembly.swift in Sources */,
