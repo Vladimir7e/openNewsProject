@@ -14,6 +14,7 @@ protocol NewsActions: AnyObject {
 
 protocol INewsPresenter: AnyObject {
     func viewDidLoad()
+    func viewWillAppear()
     var viewModel: NewsViewModel { get }
 }
 
@@ -30,7 +31,7 @@ class NewsPresenter {
     
     // Properties
     private(set) var viewModel: NewsViewModel = .empty
-
+    var isFirstAppear = true
     // MARK: - Initialization
 
     init(
@@ -59,6 +60,7 @@ class NewsPresenter {
             getMostviewed()
         case .favorites:
             getFavorites()
+            view?.reloadData()
         }
     }
 
@@ -114,9 +116,18 @@ class NewsPresenter {
 }
 
 extension NewsPresenter: INewsPresenter {
+    
     func viewDidLoad() {
         view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
         getNews()
+    }
+    
+    func viewWillAppear() {
+        if isFirstAppear {
+            isFirstAppear = false
+        } else {
+            getNews()
+        }
     }
 }
 
@@ -125,3 +136,4 @@ extension NewsPresenter: NewsActions {
         router.showDetailScreen(detailViewModel: detailViewModel)
     }
 }
+

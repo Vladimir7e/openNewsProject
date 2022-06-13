@@ -44,6 +44,11 @@ final class NewsViewController: UIViewController {
 
         presenter.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
+    }
 
     private func setup() {
         let nibCell = UINib(nibName: String(describing: NewsCollectionViewCell.self), bundle: nil)

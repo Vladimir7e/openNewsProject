@@ -25,17 +25,24 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
         super.awakeFromNib()
         
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+        descriptionLabel?.text = ""
+        imageView.image = nil
+    }
 
     // MARK: - Public
 
     func setup(viewModel: NewsCellViewModel) {
-        titleLabel?.text = viewModel.title
-        descriptionLabel?.text = viewModel.description
-        imageView?.kf.indicatorType = .activity
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.description
+        imageView.kf.indicatorType = .activity
         guard let imagePath: String = viewModel.imagePath else {
             return
         }
-        imageView?.kf.setImage(with: URL(string: imagePath))
+        imageView.kf.setImage(with: URL(string: imagePath))
     }
 
     // MARK: - CellSizeProtocol
