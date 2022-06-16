@@ -10,8 +10,7 @@ import UIKit
 
 protocol IDetailPresenter: AnyObject {
     func viewDidLoad()
-    func didTapSaveButton()
-
+    func didTapRightItemButton(isSelected: Bool)
 }
 
 class DetailPresenter {
@@ -33,6 +32,15 @@ class DetailPresenter {
         self.viewModel = viewModel
         self.storage = storage
     }
+    
+    private func some(isSelected: Bool) {
+        if isSelected {
+            storage.save(model: viewModel)
+        } else {
+            storage.remove(id: viewModel.id)
+        }
+    }
+    
 }
 
 extension DetailPresenter: IDetailPresenter {
@@ -42,8 +50,8 @@ extension DetailPresenter: IDetailPresenter {
         
     }
     
-    func didTapSaveButton() {
-        storage.save(model: viewModel)
+    func didTapRightItemButton(isSelected: Bool) {
+        some(isSelected: isSelected)
     }
     
 }

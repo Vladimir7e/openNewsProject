@@ -20,6 +20,7 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     private let presenter: IDetailPresenter
     // MARK: - IBOutlet
     @IBOutlet weak var webView: WKWebView!
+    private let saveButton: UIButton = UIButton(type: .system)
     
     // MARK: - Initialization
     init(
@@ -43,11 +44,22 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     
     private func setup() {
         setupNavigation()
+        setupSaveButton()
         setupWebView()
     }
     
     private func setupNavigation() {
-        navigationItem.rightBarButtonItem = .init(barButtonSystemItem: .save , target: self, action: #selector(favorites))
+        navigationItem.rightBarButtonItem = .init(customView: saveButton)
+    }
+    
+    private func setupSaveButton() {
+        saveButton.setTitle("save", for: .normal)
+        saveButton.setTitle("delete", for: .selected)
+        saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        saveButton.setTitleColor(.black, for: .normal)
+        saveButton.setTitleColor(.black, for: .selected)
+        saveButton.tintColor = .white
+        saveButton.addTarget(self, action: #selector(favorites), for: .touchUpInside)
     }
     
     private func setupWebView() {
@@ -56,7 +68,9 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     @objc private func favorites() {
-        presenter.didTapSaveButton()
+        saveButton.isSelected = !saveButton.isSelected
+        presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
+        
     }
     
 }

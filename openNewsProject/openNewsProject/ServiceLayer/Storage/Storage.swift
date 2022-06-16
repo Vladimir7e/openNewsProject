@@ -12,6 +12,7 @@ import CoreData
 protocol Storable {
     func save(model: DetailViewModel)
     func fetchData() -> [DetailViewModel]
+    func remove(id: Int)
 }
 
 class Storage: Storable {
@@ -73,5 +74,32 @@ class Storage: Storable {
             array.append(newsObject)
         }
         return array
-    }    
+    }
+    
+    func remove(id: Int) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NewsData")
+        
+        
+        if let objects = try? managedContext.fetch(fetchRequest) {
+            
+            
+            for object in objects {
+                guard let objectId = object.value(forKey: "id") as? Int else { return }
+                if objectId == id {
+                    managedContext.delete(object)
+                }
+            }
+            do {
+                try managedContext.save()
+            } catch {
+                print("Error")
+            }
+        }
+    }
 }
