@@ -33,7 +33,7 @@ class DetailPresenter {
         self.storage = storage
     }
     
-    private func some(isSelected: Bool) {
+    private func buttonAction(isSelected: Bool) {
         if isSelected {
             storage.save(model: viewModel)
         } else {
@@ -41,17 +41,26 @@ class DetailPresenter {
         }
     }
     
+    func buttonLogic() {
+        let models = storage.fetchData()
+        for model in models {
+            if model.id == viewModel.id {
+                view?.setButtonState(isSelected: true)
+            }
+        }
+    }
 }
 
 extension DetailPresenter: IDetailPresenter {
     
     func viewDidLoad() {
+        buttonLogic()
         view?.setup(with: viewModel)
         
     }
     
     func didTapRightItemButton(isSelected: Bool) {
-        some(isSelected: isSelected)
+        buttonAction(isSelected: isSelected)
     }
     
 }

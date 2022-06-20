@@ -11,6 +11,7 @@ import CoreData
 
 protocol IDetailViewController: AnyObject {
     func setup(with viewModel: DetailViewModel)
+    func setButtonState(isSelected: Bool)
 
 }
 
@@ -81,5 +82,9 @@ extension DetailViewController: IDetailViewController {
             webView.load(URLRequest(url: url))
         }
         navigationItem.title = viewModel.title
+    }
+    
+    func setButtonState(isSelected: Bool) {
+        saveButton.isSelected = isSelected
     }
 }
