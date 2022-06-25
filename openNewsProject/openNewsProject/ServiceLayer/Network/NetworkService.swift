@@ -29,6 +29,7 @@ class NewsNetworkService: NewsNetworkServiceProtocol {
     }
     
     func getMostShared(completion: @escaping (Result<NewsResponseModel, Error>) -> Void) {
+        
         AF.request("https://api.nytimes.com/svc/mostpopular/v2/shared/30.json?api-key=QaKo5gh1MsmpKH6vOU3L1mwjiZsCOx20")
           .validate()
           .responseDecodable(of: NewsResponseModel.self) { (response) in

@@ -104,7 +104,6 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
         )
 
         return cellType.size(for: collectionView.frame.size, itemsPerRow: 2)
-
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

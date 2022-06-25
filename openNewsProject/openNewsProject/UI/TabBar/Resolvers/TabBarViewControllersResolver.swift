@@ -15,9 +15,7 @@ final class TabBarViewControllersResolver: ITabBarViewControllersResolver {
     
     // MARK: - ITabBarViewControllersResolver
     
-    func resolveViewController(
-        type: TabBarItemType
-    ) -> UIViewController {
+    func resolveViewController(type: TabBarItemType) -> UIViewController {
         NewsAssembly().assemble(newsType: type)
     }
 }

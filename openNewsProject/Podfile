@@ -5,4 +5,5 @@ target 'openNewsProject' do
 
   pod 'Alamofire'
   pod 'Kingfisher'
+  pod 'R.swift'
 end

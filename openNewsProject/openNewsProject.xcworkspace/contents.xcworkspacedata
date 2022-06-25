@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:R.generated.swift">
+   </FileRef>
+   <FileRef
       location = "group:openNewsProject.xcodeproj">
    </FileRef>
    <FileRef
