@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  openNewsProject
+
+  Created by Developer on 26.06.2022.
+  
+*/
+"save" = "save";
+"delete" = "delete";
+"Emailed" = "Emailed";
+"Shared" = "Shared";
+"Viewed" = "Viewed";
+"Favorites" = "Favorites";
+"Most Emailed" = "Most Emailed";
+"Most Shared" = "Most Shared";
+"Most Viewed" = "Most Viewed";
