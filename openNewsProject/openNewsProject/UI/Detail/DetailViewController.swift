@@ -54,15 +54,10 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func setupSaveButton() {
-        
         let buttonSaveButton = NSLocalizedString("save", comment: "")
         saveButton.setTitle(buttonSaveButton, for: .normal)
-        
         let buttonDeleteButton = NSLocalizedString("delete", comment: "")
         saveButton.setTitle(buttonDeleteButton, for: .selected)
-
-//        saveButton.setTitle("save", for: .normal)
-//        saveButton.setTitle("delete", for: .selected)
         saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
         saveButton.setTitleColor(.black, for: .normal)
         saveButton.setTitleColor(.black, for: .selected)
@@ -78,9 +73,7 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     @objc private func favorites() {
         saveButton.isSelected = !saveButton.isSelected
         presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
-        
     }
-    
 }
 
 extension DetailViewController: IDetailViewController {

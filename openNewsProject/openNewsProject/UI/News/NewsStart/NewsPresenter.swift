@@ -65,7 +65,7 @@ class NewsPresenter {
     }
 
     private func getMostEmailed() {
-        networkService.getMostEmailed { [weak self] result in
+        networkService.getMostEShV(type: .pathEmailed) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -79,7 +79,7 @@ class NewsPresenter {
     }
     
     private func getMostShared() {
-        networkService.getMostShared { [weak self] result in
+        networkService.getMostEShV(type: .pathShared) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -93,7 +93,7 @@ class NewsPresenter {
     }
     
     private func getMostviewed() {
-        networkService.getMostViewed { [weak self] result in
+        networkService.getMostEShV(type: .pathViewed) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):

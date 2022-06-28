@@ -25,25 +25,16 @@ final class NewsViewModelFactory: INewsViewModelFactory {
         .init(cellModels: makeCellModelsFavorites(model: model, actions: actions))
     }
 
-
     func makeTopContainerViewModel(newsType: TabBarItemType) -> NewsTopContainerViewModel {
         switch newsType {
         case .emailed:
-//            return .init(title: "Most Emailed")
             return .init(title: NSLocalizedString("Most Emailed", comment: ""))
-
         case .shared:
-//            return .init(title: "Most Shared")
             return .init(title: NSLocalizedString("Most Shared", comment: ""))
-
         case .viewed:
-//            return .init(title: "Most Viewed")
             return .init(title: NSLocalizedString("Most Viewed", comment: ""))
-
         case .favorites:
-//            return .init(title: "Favorites")
             return .init(title: NSLocalizedString("Favorites", comment: ""))
-
         }
     }
 
@@ -59,7 +50,7 @@ final class NewsViewModelFactory: INewsViewModelFactory {
                 )
             )
         }
-
+        
         return cellModels
     }
     

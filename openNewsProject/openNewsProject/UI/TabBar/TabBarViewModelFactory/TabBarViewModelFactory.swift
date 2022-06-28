@@ -17,18 +17,10 @@ final class TabBarViewModelFactory: ITabBarViewModelFactory {
     
     func makeViewModels() -> [TabBarViewModel] {
         [
-//            .init(type: .emailed, tabBarItem: .init(title: "Emailed", image: nil, tag: 0)),
             .init(type: .emailed, tabBarItem: .init(title: NSLocalizedString("Emailed", comment: ""), image: nil, tag: 0)),
-            
-//            .init(type: .shared, tabBarItem: .init(title: "Shared", image: nil, tag: 1)),
             .init(type: .shared, tabBarItem: .init(title: NSLocalizedString("Shared", comment: ""), image: nil, tag: 1)),
-
-//            .init(type: .viewed, tabBarItem: .init(title: "Viewed", image: nil, tag: 2)),
             .init(type: .viewed, tabBarItem: .init(title: NSLocalizedString("Viewed", comment: ""), image: nil, tag: 2)),
-
-//            .init(type: .favorites, tabBarItem: .init(title: "Favorites", image: nil, tag: 3))
-                .init(type: .favorites, tabBarItem: .init(title: NSLocalizedString("Favorites", comment: ""), image: nil, tag: 3))
-
+            .init(type: .favorites, tabBarItem: .init(title: NSLocalizedString("Favorites", comment: ""), image: nil, tag: 3))
         ]
     }
 }
