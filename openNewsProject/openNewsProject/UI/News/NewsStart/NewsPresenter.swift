@@ -53,47 +53,19 @@ class NewsPresenter {
     private func getNews() {
         switch newsType {
         case .emailed:
-            getMostEmailed()
+            getMostEmailed(type: .pathEmailed)
         case .shared:
-            getMostShared()
+            getMostEmailed(type: .pathShared)
         case .viewed:
-            getMostviewed()
+            getMostEmailed(type: .pathViewed)
         case .favorites:
             getFavorites()
             view?.reloadData()
         }
     }
 
-    private func getMostEmailed() {
-        networkService.getMostEShV(type: .pathEmailed) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self?.updateModel(with: response.results)
-                    self?.view?.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    private func getMostShared() {
-        networkService.getMostEShV(type: .pathShared) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let response):
-                    self?.updateModel(with: response.results)
-                    self?.view?.reloadData()
-                case .failure(let error):
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    private func getMostviewed() {
-        networkService.getMostEShV(type: .pathViewed) { [weak self] result in
+    private func getMostEmailed(type: PathType) {
+        networkService.getMostNews(type: type) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
