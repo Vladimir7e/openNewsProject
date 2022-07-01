@@ -21,6 +21,7 @@
 		8B5302FF28256BEA005D7F2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5302FD28256BEA005D7F2F /* LaunchScreen.storyboard */; };
 		8B96CC1C28492E17001D43F5 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */; };
 		8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1D284E3F58001D43F5 /* Storage.swift */; };
+		8B977996286F24B100EA4748 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B977995286F24B100EA4748 /* R.generated.swift */; };
 		8B996DB1284623A4003305CE /* NewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB0284623A4003305CE /* NewsRouter.swift */; };
 		8B996DB428463640003305CE /* DetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB328463640003305CE /* DetailAssembly.swift */; };
 		8B996DB628463658003305CE /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB528463658003305CE /* DetailPresenter.swift */; };
@@ -63,6 +64,7 @@
 		8B53030028256BEA005D7F2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		8B96CC1D284E3F58001D43F5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		8B977995286F24B100EA4748 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		8B996DB0284623A4003305CE /* NewsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
 		8B996DB328463640003305CE /* DetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembly.swift; sourceTree = "<group>"; };
 		8B996DB528463658003305CE /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		8B5302E328256BE8005D7F2F = {
 			isa = PBXGroup;
 			children = (
+				8B977995286F24B100EA4748 /* R.generated.swift */,
 				8BF1B8FD286885AC00598DD3 /* Localizable.strings */,
 				8B5302EE28256BE8005D7F2F /* openNewsProject */,
 				8B5302ED28256BE8005D7F2F /* Products */,
@@ -358,6 +361,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8B977994286F23FB00EA4748 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		8B5302EB28256BE8005D7F2F /* openNewsProject */ = {
 			isa = PBXNativeTarget;
@@ -365,6 +378,7 @@
 			buildPhases = (
 				9498502ED51C727F5F8CF4B7 /* [CP] Check Pods Manifest.lock */,
 				8B5CB7FC2865F6A500BF2391 /* ShellScript */,
+				8B977994286F23FB00EA4748 /* Headers */,
 				8B5302E828256BE8005D7F2F /* Sources */,
 				8B5302E928256BE8005D7F2F /* Frameworks */,
 				8B5302EA28256BE8005D7F2F /* Resources */,
@@ -498,6 +512,7 @@
 			files = (
 				8BC63065283560750012A75E /* TabBarViewModelFactory.swift in Sources */,
 				8B5302F028256BE8005D7F2F /* AppDelegate.swift in Sources */,
+				8B977996286F24B100EA4748 /* R.generated.swift in Sources */,
 				8B1393E12844BB7D0067D0A2 /* DetailViewController.swift in Sources */,
 				8B4B004C2836CFD000366322 /* NewsViewModelFactory.swift in Sources */,
 				8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */,

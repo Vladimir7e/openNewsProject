@@ -7,10 +7,10 @@
 */
 "save" = "save";
 "delete" = "delete";
-"Emailed" = "Emailed";
-"Shared" = "Shared";
-"Viewed" = "Viewed";
-"Favorites" = "Favorites";
-"Most Emailed" = "Most Emailed";
-"Most Shared" = "Most Shared";
-"Most Viewed" = "Most Viewed";
+"emailed" = "Emailed";
+"shared" = "Shared";
+"viewed" = "Viewed";
+"favorites" = "Favorites";
+"most Emailed" = "Most Emailed";
+"most Shared" = "Most Shared";
+"most Viewed" = "Most Viewed";

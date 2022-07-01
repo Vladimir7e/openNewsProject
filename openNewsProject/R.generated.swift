@@ -198,31 +198,31 @@ struct R: Rswift.Validatable {
       /// en translation: Emailed
       ///
       /// Locales: en, uk
-      static let emailed = Rswift.StringResource(key: "Emailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let emailed = Rswift.StringResource(key: "emailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Favorites
       ///
       /// Locales: en, uk
-      static let favorites = Rswift.StringResource(key: "Favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let favorites = Rswift.StringResource(key: "favorites", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Most Emailed
       ///
       /// Locales: en, uk
-      static let mostEmailed = Rswift.StringResource(key: "Most Emailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let mostEmailed = Rswift.StringResource(key: "most Emailed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Most Shared
       ///
       /// Locales: en, uk
-      static let mostShared = Rswift.StringResource(key: "Most Shared", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let mostShared = Rswift.StringResource(key: "most Shared", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Most Viewed
       ///
       /// Locales: en, uk
-      static let mostViewed = Rswift.StringResource(key: "Most Viewed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let mostViewed = Rswift.StringResource(key: "most Viewed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Shared
       ///
       /// Locales: en, uk
-      static let shared = Rswift.StringResource(key: "Shared", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let shared = Rswift.StringResource(key: "shared", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Viewed
       ///
       /// Locales: en, uk
-      static let viewed = Rswift.StringResource(key: "Viewed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      static let viewed = Rswift.StringResource(key: "viewed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: delete
       ///
       /// Locales: en, uk
@@ -237,14 +237,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func emailed(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Emailed", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("emailed", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Emailed"
+          return "emailed"
         }
 
-        return NSLocalizedString("Emailed", bundle: bundle, comment: "")
+        return NSLocalizedString("emailed", bundle: bundle, comment: "")
       }
 
       /// en translation: Favorites
@@ -252,14 +252,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func favorites(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Favorites", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("favorites", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Favorites"
+          return "favorites"
         }
 
-        return NSLocalizedString("Favorites", bundle: bundle, comment: "")
+        return NSLocalizedString("favorites", bundle: bundle, comment: "")
       }
 
       /// en translation: Most Emailed
@@ -267,14 +267,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func mostEmailed(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Most Emailed", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("most Emailed", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Most Emailed"
+          return "most Emailed"
         }
 
-        return NSLocalizedString("Most Emailed", bundle: bundle, comment: "")
+        return NSLocalizedString("most Emailed", bundle: bundle, comment: "")
       }
 
       /// en translation: Most Shared
@@ -282,14 +282,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func mostShared(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Most Shared", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("most Shared", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Most Shared"
+          return "most Shared"
         }
 
-        return NSLocalizedString("Most Shared", bundle: bundle, comment: "")
+        return NSLocalizedString("most Shared", bundle: bundle, comment: "")
       }
 
       /// en translation: Most Viewed
@@ -297,14 +297,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func mostViewed(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Most Viewed", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("most Viewed", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Most Viewed"
+          return "most Viewed"
         }
 
-        return NSLocalizedString("Most Viewed", bundle: bundle, comment: "")
+        return NSLocalizedString("most Viewed", bundle: bundle, comment: "")
       }
 
       /// en translation: Shared
@@ -312,14 +312,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func shared(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Shared", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("shared", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Shared"
+          return "shared"
         }
 
-        return NSLocalizedString("Shared", bundle: bundle, comment: "")
+        return NSLocalizedString("shared", bundle: bundle, comment: "")
       }
 
       /// en translation: Viewed
@@ -327,14 +327,14 @@ struct R: Rswift.Validatable {
       /// Locales: en, uk
       static func viewed(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("Viewed", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("viewed", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "Viewed"
+          return "viewed"
         }
 
-        return NSLocalizedString("Viewed", bundle: bundle, comment: "")
+        return NSLocalizedString("viewed", bundle: bundle, comment: "")
       }
 
       /// en translation: delete

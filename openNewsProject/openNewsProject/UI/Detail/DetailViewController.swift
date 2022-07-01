@@ -54,9 +54,9 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func setupSaveButton() {
-        let buttonSaveButton = NSLocalizedString("save", comment: "")
+        let buttonSaveButton = R.string.localizable.save()
         saveButton.setTitle(buttonSaveButton, for: .normal)
-        let buttonDeleteButton = NSLocalizedString("delete", comment: "")
+        let buttonDeleteButton = R.string.localizable.delete()
         saveButton.setTitle(buttonDeleteButton, for: .selected)
         saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
         saveButton.setTitleColor(.black, for: .normal)

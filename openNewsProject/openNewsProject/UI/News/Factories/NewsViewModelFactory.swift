@@ -28,13 +28,13 @@ final class NewsViewModelFactory: INewsViewModelFactory {
     func makeTopContainerViewModel(newsType: TabBarItemType) -> NewsTopContainerViewModel {
         switch newsType {
         case .emailed:
-            return .init(title: NSLocalizedString("Most Emailed", comment: ""))
+            return .init(title: R.string.localizable.mostEmailed())
         case .shared:
-            return .init(title: NSLocalizedString("Most Shared", comment: ""))
+            return .init(title: R.string.localizable.mostShared())
         case .viewed:
-            return .init(title: NSLocalizedString("Most Viewed", comment: ""))
+            return .init(title: R.string.localizable.mostViewed())
         case .favorites:
-            return .init(title: NSLocalizedString("Favorites", comment: ""))
+            return .init(title: R.string.localizable.favorites())
         }
     }
 
