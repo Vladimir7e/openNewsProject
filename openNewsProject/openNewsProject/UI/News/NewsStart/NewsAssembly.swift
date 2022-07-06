@@ -6,22 +6,22 @@
 //
 
 import UIKit
+import CarPlay
 
 protocol INewsAssembly {
-    func assemble(newsType: TabBarItemType) -> UIViewController
+    func assemble(newsType: ModelType) -> UIViewController
 }
 
 final class NewsAssembly: INewsAssembly {
     
-    func assemble(newsType: TabBarItemType) -> UIViewController {
+    func assemble(newsType: ModelType) -> UIViewController {
         let detailAssembly: DetailAssembly = DetailAssembly()
         let router: NewsRouter = NewsRouter(detailAssembly: detailAssembly)
-        let networkService: NewsNetworkService = NewsNetworkService()
         let viewModelFactory: NewsViewModelFactory = NewsViewModelFactory()
         let storage: Storage = Storage()
         
         let presenter: NewsPresenter = NewsPresenter(
-            networkService: networkService,
+            networkService: newsType.servise,
             viewModelFactory: viewModelFactory,
             router: router,
             newsType: newsType,

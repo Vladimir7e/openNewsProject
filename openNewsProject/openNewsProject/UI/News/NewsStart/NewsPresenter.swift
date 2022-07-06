@@ -22,12 +22,12 @@ class NewsPresenter {
 
     // Dependencies
     weak var view: INewsViewController?
-    private let networkService: NewsNetworkServiceProtocol
+    private let networkService: NewsServiceProtocol
     private let viewModelFactory: INewsViewModelFactory
     private let router: INewsRouter
     private let storage: Storable
     
-    let newsType: TabBarItemType
+    let newsType: ModelType
     
     // Properties
     private(set) var viewModel: NewsViewModel = .empty
@@ -35,10 +35,10 @@ class NewsPresenter {
     // MARK: - Initialization
 
     init(
-        networkService: NewsNetworkServiceProtocol,
+        networkService: NewsServiceProtocol,
         viewModelFactory: INewsViewModelFactory,
         router: INewsRouter,
-        newsType: TabBarItemType,
+        newsType: ModelType,
         storage: Storable
     ) {
         self.networkService = networkService
@@ -49,23 +49,21 @@ class NewsPresenter {
     }
 
     // MARK: - Private
+    
+//    private func getNews() {
+//
+//        switch newsType {
+//        case .favorites:
+//            getFavorites()
+//            view?.reloadData()
+//        default:
+//            getMostNews()
+//        }
+//    }
 
     private func getNews() {
-        switch newsType {
-        case .emailed:
-            getMostEmailed(type: .pathEmailed)
-        case .shared:
-            getMostEmailed(type: .pathShared)
-        case .viewed:
-            getMostEmailed(type: .pathViewed)
-        case .favorites:
-            getFavorites()
-            view?.reloadData()
-        }
-    }
-
-    private func getMostEmailed(type: PathType) {
-        networkService.getMostNews(type: type) { [weak self] result in
+        networkService.getNews() {
+            [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -78,7 +76,7 @@ class NewsPresenter {
         }
     }
     
-    private func getFavorites() {
+    func getFavorites() {
         viewModel = viewModelFactory.makeViewModelFavorites(model: storage.fetchData(), actions: self)
     }
 

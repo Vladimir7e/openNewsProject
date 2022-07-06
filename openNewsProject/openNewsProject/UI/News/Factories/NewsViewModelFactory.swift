@@ -10,7 +10,7 @@ import UIKit
 protocol INewsViewModelFactory {
     func makeViewModel(newsModels: [News], actions: NewsActions) -> NewsViewModel
     func makeViewModelFavorites(model: [DetailViewModel], actions: NewsActions) -> NewsViewModel
-    func makeTopContainerViewModel(newsType: TabBarItemType) -> NewsTopContainerViewModel
+    func makeTopContainerViewModel(newsType: ModelType) -> NewsTopContainerViewModel
 }
 
 final class NewsViewModelFactory: INewsViewModelFactory {
@@ -25,7 +25,7 @@ final class NewsViewModelFactory: INewsViewModelFactory {
         .init(cellModels: makeCellModelsFavorites(model: model, actions: actions))
     }
 
-    func makeTopContainerViewModel(newsType: TabBarItemType) -> NewsTopContainerViewModel {
+    func makeTopContainerViewModel(newsType: ModelType) -> NewsTopContainerViewModel {
         switch newsType {
         case .emailed:
             return .init(title: R.string.localizable.mostEmailed())

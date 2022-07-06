@@ -17,18 +17,18 @@ class DetailPresenter {
 
     // Dependencies
     weak var view: IDetailViewController?
-    private let networkService: NewsNetworkServiceProtocol
+//    private let networkService: NewsServiceProtocol
     private let viewModel: DetailViewModel
     private let storage: Storable
 
     // MARK: - Initialization
 
     init(
-        networkService: NewsNetworkServiceProtocol,
+//        networkService: NewsServiceProtocol,
         viewModel: DetailViewModel,
         storage: Storable
     ) {
-        self.networkService = networkService
+//        self.networkService = networkService
         self.viewModel = viewModel
         self.storage = storage
     }

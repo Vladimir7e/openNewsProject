@@ -8,16 +8,27 @@
 import UIKit
 
 struct TabBarViewModel {
-    let type: TabBarItemType
+    let type: ModelType
     let tabBarItem: UITabBarItem
 }
 
-enum TabBarItemType: Int {
+enum ModelType: Int {
     case emailed
     case shared
     case viewed
     case favorites
     
-    
+    var servise: NewsServiceProtocol {
+        
+        switch self {
+        case .emailed:
+            return EmailedService()
+        case .shared:
+            return SharedService()
+        case .viewed:
+            return ViewedService()
+        case .favorites:
+            return FavoritesService()
+        }
+    }
 }
-

@@ -22,6 +22,10 @@
 		8B96CC1C28492E17001D43F5 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */; };
 		8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1D284E3F58001D43F5 /* Storage.swift */; };
 		8B977996286F24B100EA4748 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B977995286F24B100EA4748 /* R.generated.swift */; };
+		8B9779982874316B00EA4748 /* EmailedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9779972874316B00EA4748 /* EmailedService.swift */; };
+		8B97799B287431F400EA4748 /* SharedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97799A287431F400EA4748 /* SharedService.swift */; };
+		8B97799D2874320400EA4748 /* ViewedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B97799C2874320400EA4748 /* ViewedService.swift */; };
+		8B9779A12874470500EA4748 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9779A02874470500EA4748 /* FavoritesService.swift */; };
 		8B996DB1284623A4003305CE /* NewsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB0284623A4003305CE /* NewsRouter.swift */; };
 		8B996DB428463640003305CE /* DetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB328463640003305CE /* DetailAssembly.swift */; };
 		8B996DB628463658003305CE /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B996DB528463658003305CE /* DetailPresenter.swift */; };
@@ -65,6 +69,10 @@
 		8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		8B96CC1D284E3F58001D43F5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8B977995286F24B100EA4748 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
+		8B9779972874316B00EA4748 /* EmailedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailedService.swift; sourceTree = "<group>"; };
+		8B97799A287431F400EA4748 /* SharedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedService.swift; sourceTree = "<group>"; };
+		8B97799C2874320400EA4748 /* ViewedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewedService.swift; sourceTree = "<group>"; };
+		8B9779A02874470500EA4748 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		8B996DB0284623A4003305CE /* NewsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRouter.swift; sourceTree = "<group>"; };
 		8B996DB328463640003305CE /* DetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAssembly.swift; sourceTree = "<group>"; };
 		8B996DB528463658003305CE /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
@@ -212,6 +220,17 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		8B9779992874317700EA4748 /* NewsService */ = {
+			isa = PBXGroup;
+			children = (
+				8B9779972874316B00EA4748 /* EmailedService.swift */,
+				8B97799A287431F400EA4748 /* SharedService.swift */,
+				8B97799C2874320400EA4748 /* ViewedService.swift */,
+				8B9779A02874470500EA4748 /* FavoritesService.swift */,
+			);
+			path = NewsService;
+			sourceTree = "<group>";
+		};
 		8B996DB22846346A003305CE /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +362,7 @@
 		8BC63073283564670012A75E /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				8B9779992874317700EA4748 /* NewsService */,
 				8B3CB5E5282E3E34009F2651 /* Models */,
 				8BF1B9002868DF5800598DD3 /* NetworkManager.swift */,
 				8B3CB5E7282E5691009F2651 /* NetworkService.swift */,
@@ -515,6 +535,7 @@
 				8B977996286F24B100EA4748 /* R.generated.swift in Sources */,
 				8B1393E12844BB7D0067D0A2 /* DetailViewController.swift in Sources */,
 				8B4B004C2836CFD000366322 /* NewsViewModelFactory.swift in Sources */,
+				8B9779A12874470500EA4748 /* FavoritesService.swift in Sources */,
 				8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */,
 				8BC6306128355F8C0012A75E /* TabBarPresenter.swift in Sources */,
 				8B3CB5E2282E3AE8009F2651 /* NewsPresenter.swift in Sources */,
@@ -532,12 +553,15 @@
 				8B996DB428463640003305CE /* DetailAssembly.swift in Sources */,
 				8BC6305F28355F7F0012A75E /* TabBarController.swift in Sources */,
 				8BF1B9012868DF5800598DD3 /* NetworkManager.swift in Sources */,
+				8B97799B287431F400EA4748 /* SharedService.swift in Sources */,
+				8B9779982874316B00EA4748 /* EmailedService.swift in Sources */,
 				8BC6305928355E4D0012A75E /* TabBarViewControllersResolver.swift in Sources */,
 				8BC6307C28356FDA0012A75E /* NewsAssembly.swift in Sources */,
 				8BC63078283565F30012A75E /* ViewIdentifiable.swift in Sources */,
 				8B96CC1C28492E17001D43F5 /* DetailViewModel.swift in Sources */,
 				8BC6306E283562F70012A75E /* NewsViewModel.swift in Sources */,
 				8B996DB628463658003305CE /* DetailPresenter.swift in Sources */,
+				8B97799D2874320400EA4748 /* ViewedService.swift in Sources */,
 				8BC6307A283566370012A75E /* CellSizeProtocol.swift in Sources */,
 				8BC6305428355C600012A75E /* FlowCoordinator.swift in Sources */,
 			);
