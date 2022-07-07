@@ -10,8 +10,25 @@ import Alamofire
 
 class FavoritesService: NewsServiceProtocol {
     
-    func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
-        
-    }
+    private let storage: Storable = Storage()
     
+    func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
+        var news: [News] = []
+        storage.fetchData().forEach { model in
+            let mediaMetadata: MediaMetadata = .init(url: model.imagePath)
+            let media: Media = .init(mediaMetadata: [mediaMetadata])
+            
+            news.append(
+                .init(
+                    url: model.url,
+                    id: model.id,
+                    title: model.title,
+                    publishedDate: model.publishedDate,
+                    media: [media]
+                )
+            )
+        }
+        
+        completion(.success(.init(results: news)))
+    }
 }

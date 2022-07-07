@@ -50,17 +50,6 @@ class NewsPresenter {
 
     // MARK: - Private
     
-//    private func getNews() {
-//
-//        switch newsType {
-//        case .favorites:
-//            getFavorites()
-//            view?.reloadData()
-//        default:
-//            getMostNews()
-//        }
-//    }
-
     private func getNews() {
         networkService.getNews() {
             [weak self] result in
@@ -74,10 +63,6 @@ class NewsPresenter {
                 }
             }
         }
-    }
-    
-    func getFavorites() {
-        viewModel = viewModelFactory.makeViewModelFavorites(model: storage.fetchData(), actions: self)
     }
 
     private func updateModel(with news: [News]) {
