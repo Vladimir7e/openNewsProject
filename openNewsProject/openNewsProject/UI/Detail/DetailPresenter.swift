@@ -17,18 +17,15 @@ class DetailPresenter {
 
     // Dependencies
     weak var view: IDetailViewController?
-//    private let networkService: NewsServiceProtocol
     private let viewModel: DetailViewModel
     private let storage: Storable
 
     // MARK: - Initialization
 
     init(
-//        networkService: NewsServiceProtocol,
         viewModel: DetailViewModel,
         storage: Storable
     ) {
-//        self.networkService = networkService
         self.viewModel = viewModel
         self.storage = storage
     }
@@ -42,11 +39,9 @@ class DetailPresenter {
     }
     
     func buttonLogic() {
-        let models = storage.fetchData()
-        for model in models {
-            if model.id == viewModel.id {
-                view?.setButtonState(isSelected: true)
-            }
+        let models: [DetailViewModel] = storage.fetchData()
+        for model in models where model.id == viewModel.id {
+            view?.setButtonState(isSelected: true)
         }
     }
 }
@@ -56,12 +51,9 @@ extension DetailPresenter: IDetailPresenter {
     func viewDidLoad() {
         buttonLogic()
         view?.setup(with: viewModel)
-        
     }
     
     func didTapRightItemButton(isSelected: Bool) {
         buttonAction(isSelected: isSelected)
     }
-    
 }
-

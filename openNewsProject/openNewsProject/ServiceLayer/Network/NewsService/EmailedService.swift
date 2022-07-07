@@ -16,7 +16,7 @@ class EmailedService: NewsServiceProtocol {
     private let networkManager: NetworkManagerProtocol = NetworkManager()
 
     func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
-        let path = networkManager.url + "/emailed/30.json"
+        let path: String = networkManager.url + "/emailed/30.json"
 
         guard let url = URL(string: path) else {
             completion(.failure(.invalidURL(url: path)))

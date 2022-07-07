@@ -12,11 +12,10 @@ protocol ITabBarViewControllersResolver {
 }
 
 final class TabBarViewControllersResolver: ITabBarViewControllersResolver {
-    
+
     // MARK: - ITabBarViewControllersResolver
-    
+
     func resolveViewController(type: ModelType) -> UIViewController {
         NewsAssembly().assemble(newsType: type)
     }
 }
-

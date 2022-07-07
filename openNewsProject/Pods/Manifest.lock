@@ -4,11 +4,13 @@ PODS:
   - R.swift (6.1.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
+  - SwiftLint (0.46.2)
 
 DEPENDENCIES:
   - Alamofire
   - Kingfisher
   - R.swift
+  - SwiftLint
 
 SPEC REPOS:
   trunk:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - Kingfisher
     - R.swift
     - R.swift.Library
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   Kingfisher: 44ed6a8504763f27bab46163adfac83f5deb240c
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  SwiftLint: 6bc52a21f0fd44cab9aa2dc8e534fb9f5e3ec507
 
-PODFILE CHECKSUM: 82d5246f1ccf0e961b33d757e0c124defba90dd8
+PODFILE CHECKSUM: 79966a9e2542152395dae5235ecffdc4aca13686
 
 COCOAPODS: 1.11.3

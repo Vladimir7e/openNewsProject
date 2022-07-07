@@ -14,4 +14,3 @@ struct DetailViewModel {
     let imagePath: String?
     let publishedDate: String
 }
-

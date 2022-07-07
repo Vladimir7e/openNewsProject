@@ -31,7 +31,7 @@ class NewsPresenter {
     
     // Properties
     private(set) var viewModel: NewsViewModel = .empty
-    var isFirstAppear = true
+    var isFirstAppear: Bool = true
     // MARK: - Initialization
 
     init(
@@ -51,8 +51,7 @@ class NewsPresenter {
     // MARK: - Private
     
     private func getNews() {
-        networkService.getNews() {
-            [weak self] result in
+        networkService.getNews { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
@@ -91,4 +90,3 @@ extension NewsPresenter: NewsActions {
         router.showDetailScreen(detailViewModel: detailViewModel)
     }
 }
-

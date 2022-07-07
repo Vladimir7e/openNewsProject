@@ -20,7 +20,6 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -48,9 +47,9 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
     // MARK: - CellSizeProtocol
 
     static func size(for size: CGSize, itemsPerRow: CGFloat) -> CGSize {
-        let paddinWidth = (CGFloat.inset * 2) + CGFloat.interItemSpacing
-        let availableWidht = size.width - paddinWidth
-        let widthPerItem = availableWidht / itemsPerRow
+        let paddinWidth: CGFloat = (CGFloat.inset * 2) + CGFloat.interItemSpacing
+        let availableWidht: CGFloat = size.width - paddinWidth
+        let widthPerItem: CGFloat = availableWidht / itemsPerRow
 
         return CGSize(width: widthPerItem, height: 80)
     }

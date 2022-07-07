@@ -12,13 +12,13 @@ import CoreData
 protocol IDetailViewController: AnyObject {
     func setup(with viewModel: DetailViewModel)
     func setButtonState(isSelected: Bool)
-
 }
 
 class DetailViewController: UIViewController, WKNavigationDelegate {
     
     // Dependencies
     private let presenter: IDetailPresenter
+    
     // MARK: - IBOutlet
     @IBOutlet weak var webView: WKWebView!
     private let saveButton: UIButton = UIButton(type: .system)

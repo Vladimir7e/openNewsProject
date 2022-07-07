@@ -14,11 +14,8 @@ protocol IDetailAssembly {
 final class DetailAssembly: IDetailAssembly {
     
     func assemble(detailViewModel: DetailViewModel) -> UIViewController {
-//        let networkService:
         let storage: Storage = Storage()
-
         let presenter: DetailPresenter = DetailPresenter(
-//            networkService: networkService,
             viewModel: detailViewModel,
             storage: storage
         )

@@ -25,7 +25,6 @@ class Storage: Storable {
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        
         let entity = NSEntityDescription.entity(forEntityName: "NewsData", in: managedContext)!
         let newsData = NSManagedObject(entity: entity, insertInto: managedContext)
         
@@ -82,12 +81,9 @@ class Storage: Storable {
         }
         
         let managedContext = appDelegate.persistentContainer.viewContext
-        
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NewsData")
         
-        
         if let objects = try? managedContext.fetch(fetchRequest) {
-            
             
             for object in objects {
                 guard let objectId = object.value(forKey: "id") as? Int else { return }

@@ -15,7 +15,7 @@ protocol INewsViewController: AnyObject {
 final class NewsViewController: UIViewController {
 
     // Dependencies
-    private let sectionInserts = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+    private let sectionInserts: UIEdgeInsets = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
     private let presenter: INewsPresenter
     private let cellTypeResolver: INewsCellTypeResolver
 
@@ -51,7 +51,7 @@ final class NewsViewController: UIViewController {
     }
 
     private func setup() {
-        let nibCell = UINib(nibName: String(describing: NewsCollectionViewCell.self), bundle: nil)
+        let nibCell: UINib = UINib(nibName: String(describing: NewsCollectionViewCell.self), bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: String(describing: NewsCollectionViewCell.self))
 
         collectionView.delegate = self
@@ -77,7 +77,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: NewsCollectionViewCell.self), for: indexPath) as? NewsCollectionViewCell else { return UICollectionViewCell() }
 
-        let cellModel = presenter.viewModel.cellModels[indexPath.row]
+        let cellModel: CellViewModel = presenter.viewModel.cellModels[indexPath.row]
         switch cellModel {
         case .defaultCell(let cellViewModel):
             cell.setup(viewModel: cellViewModel)
@@ -88,7 +88,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let cellModel = presenter.viewModel.cellModels[indexPath.row]
+        let cellModel: CellViewModel = presenter.viewModel.cellModels[indexPath.row]
         switch cellModel {
         case .defaultCell(let cellModel):
             cellModel.tapAction()

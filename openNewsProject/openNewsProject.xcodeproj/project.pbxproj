@@ -394,7 +394,8 @@
 			buildConfigurationList = 8B53030328256BEA005D7F2F /* Build configuration list for PBXNativeTarget "openNewsProject" */;
 			buildPhases = (
 				9498502ED51C727F5F8CF4B7 /* [CP] Check Pods Manifest.lock */,
-				8B5CB7FC2865F6A500BF2391 /* ShellScript */,
+				8B5CB7FC2865F6A500BF2391 /* Run Script */,
+				8B94CFBF2876A118007414B6 /* SwiftLint */,
 				8B977994286F23FB00EA4748 /* Headers */,
 				8B5302E828256BE8005D7F2F /* Sources */,
 				8B5302E928256BE8005D7F2F /* Frameworks */,
@@ -461,7 +462,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8B5CB7FC2865F6A500BF2391 /* ShellScript */ = {
+		8B5CB7FC2865F6A500BF2391 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -472,6 +473,7 @@
 			inputPaths = (
 				"",
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -479,7 +481,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n\n";
+		};
+		8B94CFBF2876A118007414B6 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		9498502ED51C727F5F8CF4B7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
