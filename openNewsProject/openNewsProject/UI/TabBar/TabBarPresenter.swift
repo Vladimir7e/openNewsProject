@@ -6,6 +6,7 @@
 //
 
 protocol ITabBarPresenter {
+    
     func viewWillAppear()
 }
 
@@ -26,6 +27,7 @@ final class TabBarPresenter: ITabBarPresenter {
     // MARK: - ITabBarPresenter
     
     func viewWillAppear() {
+        
         let viewModels: [TabBarViewModel] = viewModelFactory.makeViewModels()
         view?.setup(viewModels: viewModels)
     }

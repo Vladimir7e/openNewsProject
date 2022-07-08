@@ -13,7 +13,9 @@ class FavoritesService: NewsServiceProtocol {
     private let storage: Storable = Storage()
     
     func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
+        
         var news: [News] = []
+        
         storage.fetchData().forEach { model in
             let mediaMetadata: MediaMetadata = .init(url: model.imagePath)
             let media: Media = .init(mediaMetadata: [mediaMetadata])

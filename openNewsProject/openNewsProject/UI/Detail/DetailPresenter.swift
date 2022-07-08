@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol IDetailPresenter: AnyObject {
+    
     func viewDidLoad()
     func didTapRightItemButton(isSelected: Bool)
 }
@@ -31,6 +32,7 @@ class DetailPresenter {
     }
     
     private func buttonAction(isSelected: Bool) {
+        
         if isSelected {
             storage.save(model: viewModel)
         } else {
@@ -39,6 +41,7 @@ class DetailPresenter {
     }
     
     func buttonLogic() {
+        
         let models: [DetailViewModel] = storage.fetchData()
         for model in models where model.id == viewModel.id {
             view?.setButtonState(isSelected: true)
@@ -49,11 +52,13 @@ class DetailPresenter {
 extension DetailPresenter: IDetailPresenter {
     
     func viewDidLoad() {
+        
         buttonLogic()
         view?.setup(with: viewModel)
     }
     
     func didTapRightItemButton(isSelected: Bool) {
+        
         buttonAction(isSelected: isSelected)
     }
 }

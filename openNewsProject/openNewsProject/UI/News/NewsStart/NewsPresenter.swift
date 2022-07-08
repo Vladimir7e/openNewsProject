@@ -9,12 +9,15 @@ import Foundation
 import UIKit
 
 protocol NewsActions: AnyObject {
+    
     func didTapDefaultCell(detailViewModel: DetailViewModel)
 }
 
 protocol INewsPresenter: AnyObject {
+    
     func viewDidLoad()
     func viewWillAppear()
+    func refreshData()
     var viewModel: NewsViewModel { get }
 }
 
@@ -26,12 +29,12 @@ class NewsPresenter {
     private let viewModelFactory: INewsViewModelFactory
     private let router: INewsRouter
     private let storage: Storable
-    
     let newsType: ModelType
     
     // Properties
     private(set) var viewModel: NewsViewModel = .empty
     var isFirstAppear: Bool = true
+    
     // MARK: - Initialization
 
     init(
@@ -51,6 +54,7 @@ class NewsPresenter {
     // MARK: - Private
     
     private func getNews() {
+        
         networkService.getNews { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -58,13 +62,14 @@ class NewsPresenter {
                     self?.updateModel(with: response.results)
                     self?.view?.reloadData()
                 case .failure(let error):
-                    print(error)
+                    self?.view?.errorAlert(message: error.localizedDescription)
                 }
             }
         }
     }
 
     private func updateModel(with news: [News]) {
+        
         viewModel = viewModelFactory.makeViewModel(newsModels: news, actions: self)
     }
 }
@@ -72,21 +77,28 @@ class NewsPresenter {
 extension NewsPresenter: INewsPresenter {
     
     func viewDidLoad() {
+        
         view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
-        getNews()
     }
     
     func viewWillAppear() {
+        
         if isFirstAppear {
             isFirstAppear = false
-        } else {
             getNews()
         }
+    }
+    
+    func refreshData() {
+        
+        getNews()
     }
 }
 
 extension NewsPresenter: NewsActions {
+    
     func didTapDefaultCell(detailViewModel: DetailViewModel) {
+        
         router.showDetailScreen(detailViewModel: detailViewModel)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 struct NewsCellViewModel {
+    
     let id: Int
     let imagePath: String?
     let title: String

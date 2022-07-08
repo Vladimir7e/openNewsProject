@@ -8,8 +8,10 @@
 import UIKit
 
 protocol INewsViewController: AnyObject {
+    
     func reloadData()
     func setupTopContainer(with viewModel: NewsTopContainerViewModel)
+    func errorAlert(message: String)
 }
 
 final class NewsViewController: UIViewController {
@@ -20,9 +22,12 @@ final class NewsViewController: UIViewController {
     private let cellTypeResolver: INewsCellTypeResolver
 
     // MARK: - IBOutlet
+    
     @IBOutlet weak var collectionView: UICollectionView!
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
 
     // MARK: - Initialization
+    
     init(
         presenter: INewsPresenter,
         cellTypeResolver: INewsCellTypeResolver
@@ -37,45 +42,88 @@ final class NewsViewController: UIViewController {
     }
 
     // MARK: - Life cycle
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         setup()
-
         presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+        
         presenter.viewWillAppear()
     }
 
     private func setup() {
+       
+        setupCollectionView()
+        setuprefreshControl()
+    }
+    
+    private func setupCollectionView() {
+        
         let nibCell: UINib = UINib(nibName: String(describing: NewsCollectionViewCell.self), bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: String(describing: NewsCollectionViewCell.self))
 
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
+    private func setuprefreshControl() {
+        
+        if #available(iOS 10.0, *) {
+            collectionView.refreshControl = refreshControl
+        } else {
+            collectionView.addSubview(refreshControl)
+        }
+        
+        refreshControl.addTarget(self, action: #selector(refreshData(sender:)), for: .valueChanged)
+    }
+    
+    @objc private func refreshData(sender: UIRefreshControl) {
+        
+        presenter.refreshData()
+        refreshControl.endRefreshing()
+    }
+    
+    func errorAlert(message: String) {
+        
+        presentErrorAlert(message: message)
+    }
 }
 
 extension NewsViewController: INewsViewController {
+    
     func reloadData() {
+        
         collectionView.reloadData()
     }
 
     func setupTopContainer(with viewModel: NewsTopContainerViewModel) {
+        
         navigationItem.title = viewModel.title
     }
 }
 
 extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return presenter.viewModel.cellModels.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: NewsCollectionViewCell.self), for: indexPath) as? NewsCollectionViewCell else { return UICollectionViewCell() }
+        
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: String(describing: NewsCollectionViewCell.self),
+            for: indexPath
+        ) as? NewsCollectionViewCell else {
+                return UICollectionViewCell()
+        }
 
         let cellModel: CellViewModel = presenter.viewModel.cellModels[indexPath.row]
         switch cellModel {
@@ -87,6 +135,7 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         collectionView.deselectItem(at: indexPath, animated: true)
         let cellModel: CellViewModel = presenter.viewModel.cellModels[indexPath.row]
         switch cellModel {
@@ -97,7 +146,9 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
 }
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let cellModel: CellViewModel = presenter.viewModel.cellModels[indexPath.row]
         let cellType: (ViewIdentifiable & CellSizeProtocol).Type = cellTypeResolver.resolveCellType(
             for: cellModel
@@ -107,14 +158,17 @@ extension NewsViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
         return sectionInserts
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
         return sectionInserts.left
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
         return sectionInserts.left
     }
 }

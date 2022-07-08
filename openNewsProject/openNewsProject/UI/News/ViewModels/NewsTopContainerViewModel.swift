@@ -8,5 +8,6 @@
 import Foundation
 
 struct NewsTopContainerViewModel {
+    
     let title: String
 }

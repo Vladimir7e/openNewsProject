@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 private extension CGFloat {
+    
     static let inset: CGFloat = 20
     static let interItemSpacing: CGFloat = 20
 }
@@ -21,11 +22,12 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
     @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
-        super.awakeFromNib()
         
+        super.awakeFromNib()
     }
     
     override func prepareForReuse() {
+        
         super.prepareForReuse()
         titleLabel.text = ""
         descriptionLabel?.text = ""
@@ -35,6 +37,7 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
     // MARK: - Public
 
     func setup(viewModel: NewsCellViewModel) {
+        
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         imageView.kf.indicatorType = .activity
@@ -47,6 +50,7 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
     // MARK: - CellSizeProtocol
 
     static func size(for size: CGSize, itemsPerRow: CGFloat) -> CGSize {
+        
         let paddinWidth: CGFloat = (CGFloat.inset * 2) + CGFloat.interItemSpacing
         let availableWidht: CGFloat = size.width - paddinWidth
         let widthPerItem: CGFloat = availableWidht / itemsPerRow

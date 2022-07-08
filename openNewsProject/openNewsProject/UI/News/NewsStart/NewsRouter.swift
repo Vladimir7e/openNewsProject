@@ -8,6 +8,7 @@
 import UIKit
 
 protocol INewsRouter {
+    
     func showDetailScreen(detailViewModel: DetailViewModel)
 }
 
@@ -19,10 +20,12 @@ final class NewsRouter: INewsRouter {
     let detailAssembly: IDetailAssembly
 
     init(detailAssembly: IDetailAssembly) {
+        
         self.detailAssembly = detailAssembly
     }
     
     func showDetailScreen(detailViewModel: DetailViewModel) {
+        
         let viewController: UIViewController = detailAssembly.assemble(detailViewModel: detailViewModel)
         transitionHandler?.navigationController?.pushViewController(viewController, animated: true)
     }

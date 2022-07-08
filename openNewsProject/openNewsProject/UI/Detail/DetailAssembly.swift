@@ -8,12 +8,14 @@
 import UIKit
 
 protocol IDetailAssembly {
+    
     func assemble(detailViewModel: DetailViewModel) -> UIViewController
 }
 
 final class DetailAssembly: IDetailAssembly {
     
     func assemble(detailViewModel: DetailViewModel) -> UIViewController {
+        
         let storage: Storage = Storage()
         let presenter: DetailPresenter = DetailPresenter(
             viewModel: detailViewModel,

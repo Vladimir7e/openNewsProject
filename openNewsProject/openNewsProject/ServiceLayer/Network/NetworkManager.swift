@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 protocol NetworkManagerProtocol {
+    
     var url: String { get }
     func loadData<T: Decodable>(url: URL, completion: @escaping (Result<T, AFError>) -> Void)
 }
@@ -20,6 +21,7 @@ final class NetworkManager: NetworkManagerProtocol {
     let url: String = "https://api.nytimes.com/svc/mostpopular/v2"
     
     func loadData<T: Decodable>(url: URL, completion: @escaping (Result<T, AFError>) -> Void) {
+        
         guard var urlComponents = URLComponents(string: url.absoluteString) else { return }
         let accessQuerryItem: URLQueryItem = URLQueryItem(name: parameter, value: key)
         urlComponents.queryItems = [accessQuerryItem]

@@ -8,12 +8,14 @@
 import UIKit
 
 protocol ITabBarAssembly {
+    
     func assemble() -> UIViewController
 }
 
 final class TabBarAssembly: ITabBarAssembly {
     
     func assemble() -> UIViewController {
+        
         let viewModelFactory: TabBarViewModelFactory = TabBarViewModelFactory()
         let presenter: TabBarPresenter = TabBarPresenter(
             viewModelFactory: viewModelFactory

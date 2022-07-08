@@ -8,6 +8,7 @@
 import Foundation
 
 struct DetailViewModel {
+    
     let id: Int
     let title: String
     let url: String

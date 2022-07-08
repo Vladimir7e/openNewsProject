@@ -18,6 +18,7 @@
 		8B5302FA28256BE8005D7F2F /* openNewsProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B5302F828256BE8005D7F2F /* openNewsProject.xcdatamodeld */; };
 		8B5302FC28256BE9005D7F2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B5302FB28256BE9005D7F2F /* Assets.xcassets */; };
 		8B5302FF28256BEA005D7F2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B5302FD28256BEA005D7F2F /* LaunchScreen.storyboard */; };
+		8B94CFC428776759007414B6 /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B94CFC328776759007414B6 /* ExtensionUIViewController.swift */; };
 		8B96CC1C28492E17001D43F5 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */; };
 		8B96CC1E284E3F58001D43F5 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96CC1D284E3F58001D43F5 /* Storage.swift */; };
 		8B977996286F24B100EA4748 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B977995286F24B100EA4748 /* R.generated.swift */; };
@@ -64,6 +65,7 @@
 		8B5302FB28256BE9005D7F2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B5302FE28256BEA005D7F2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B53030028256BEA005D7F2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B94CFC328776759007414B6 /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		8B96CC1B28492E17001D43F5 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		8B96CC1D284E3F58001D43F5 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8B977995286F24B100EA4748 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			children = (
 				8B5302EF28256BE8005D7F2F /* AppDelegate.swift */,
 				8B3CB5E9282E56D4009F2651 /* ServiceLayer */,
+				8B94CFC528776760007414B6 /* Extensions */,
 				8B3CB5E6282E3E53009F2651 /* UI */,
 				8B5302FB28256BE9005D7F2F /* Assets.xcassets */,
 				8B5302FD28256BEA005D7F2F /* LaunchScreen.storyboard */,
@@ -200,6 +203,14 @@
 				8B5302F828256BE8005D7F2F /* openNewsProject.xcdatamodeld */,
 			);
 			path = openNewsProject;
+			sourceTree = "<group>";
+		};
+		8B94CFC528776760007414B6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8B94CFC328776759007414B6 /* ExtensionUIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8B96CC1A28492DD9001D43F5 /* ViewModels */ = {
@@ -557,6 +568,7 @@
 				8BC6306128355F8C0012A75E /* TabBarPresenter.swift in Sources */,
 				8B3CB5E2282E3AE8009F2651 /* NewsPresenter.swift in Sources */,
 				8BC6305D28355F750012A75E /* TabBarAssembly.swift in Sources */,
+				8B94CFC428776759007414B6 /* ExtensionUIViewController.swift in Sources */,
 				8BC630752835653E0012A75E /* NewsCellTypeResolver.swift in Sources */,
 				8B5302FA28256BE8005D7F2F /* openNewsProject.xcdatamodeld in Sources */,
 				8B3CB5E4282E3E29009F2651 /* News.swift in Sources */,

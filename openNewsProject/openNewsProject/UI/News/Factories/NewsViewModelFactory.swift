@@ -8,6 +8,7 @@
 import UIKit
 
 protocol INewsViewModelFactory {
+    
     func makeViewModel(newsModels: [News], actions: NewsActions) -> NewsViewModel
     func makeTopContainerViewModel(newsType: ModelType) -> NewsTopContainerViewModel
 }
@@ -17,10 +18,12 @@ final class NewsViewModelFactory: INewsViewModelFactory {
     // MARK: - INewsViewModelFactory
 
     func makeViewModel(newsModels: [News], actions: NewsActions) -> NewsViewModel {
+        
         .init(cellModels: makeCellModels(newsModels: newsModels, actions: actions))
     }
 
     func makeTopContainerViewModel(newsType: ModelType) -> NewsTopContainerViewModel {
+        
         switch newsType {
         case .emailed:
             return .init(title: R.string.localizable.mostEmailed())
@@ -36,6 +39,7 @@ final class NewsViewModelFactory: INewsViewModelFactory {
     // MARK: - Private
 
     private func makeCellModels(newsModels: [News], actions: NewsActions) -> [CellViewModel] {
+        
         var cellModels: [CellViewModel] = []
 
         newsModels.forEach {
@@ -50,6 +54,7 @@ final class NewsViewModelFactory: INewsViewModelFactory {
     }
 
     private func makeDefaultCellModel(newsModel: News, actions: NewsActions) -> NewsCellViewModel {
+        
         .init(
             id: newsModel.id,
             imagePath: newsModel.media.first?.mediaMetadata.first?.url,

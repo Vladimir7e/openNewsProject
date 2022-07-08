@@ -8,11 +8,13 @@
 import UIKit
 
 struct TabBarViewModel {
+    
     let type: ModelType
     let tabBarItem: UITabBarItem
 }
 
 enum ModelType: Int {
+    
     case emailed
     case shared
     case viewed
