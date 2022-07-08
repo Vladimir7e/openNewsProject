@@ -10,22 +10,18 @@ import UIKit
 import CoreData
 
 protocol Storable {
-    
     func save(model: DetailViewModel)
     func fetchData() -> [DetailViewModel]
     func remove(id: Int)
 }
 
 class Storage: Storable {
-    
     private var objects: [NSManagedObject] = []
     
     func save(model: DetailViewModel) {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        
         let managedContext = appDelegate.persistentContainer.viewContext
         let entity = NSEntityDescription.entity(forEntityName: "NewsData", in: managedContext)!
         let newsData = NSManagedObject(entity: entity, insertInto: managedContext)
@@ -45,11 +41,9 @@ class Storage: Storable {
     }
     
     func fetchData() -> [DetailViewModel] {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
         }
-        
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NewsData")
         
@@ -79,11 +73,9 @@ class Storage: Storable {
     }
     
     func remove(id: Int) {
-        
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
-        
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NewsData")
         

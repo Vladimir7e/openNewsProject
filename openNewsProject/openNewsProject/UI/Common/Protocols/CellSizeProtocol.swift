@@ -8,6 +8,5 @@
 import UIKit
 
 protocol CellSizeProtocol {
-    
     static func size(for size: CGSize, itemsPerRow: CGFloat) -> CGSize
 }

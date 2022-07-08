@@ -8,12 +8,10 @@
 import Foundation
 
 struct NewsResponseModel: Decodable {
-    
     let results: [News]
 }
 
 struct News: Decodable {
-    
     let url: String
     let id: Int
     let title: String
@@ -30,7 +28,6 @@ struct News: Decodable {
 }
 
 struct Media: Decodable {
-    
     let mediaMetadata: [MediaMetadata]
     
     enum CodingKeys: String, CodingKey {
@@ -39,6 +36,5 @@ struct Media: Decodable {
 }
 
 struct MediaMetadata: Decodable {
-    
     let url: String?
 }

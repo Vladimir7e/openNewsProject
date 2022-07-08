@@ -9,13 +9,12 @@ import UIKit
 import CoreData
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
 
+class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var flowCoordinator: IFlowCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         let window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         flowCoordinator = FlowCoordinator(window: window)
@@ -25,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Core Data stack
-
     lazy var persistentContainer: NSPersistentContainer = {
         /*
          The persistent container for the application. This implementation

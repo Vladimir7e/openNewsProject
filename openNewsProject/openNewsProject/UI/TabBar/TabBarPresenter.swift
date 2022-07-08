@@ -6,18 +6,15 @@
 //
 
 protocol ITabBarPresenter {
-    
     func viewWillAppear()
 }
 
 final class TabBarPresenter: ITabBarPresenter {
-    
     // Dependencies
     weak var view: ITabBarController?
     private let viewModelFactory: ITabBarViewModelFactory
     
     // MARK: - Initialization
-    
     init(
          viewModelFactory: ITabBarViewModelFactory
     ) {
@@ -25,9 +22,7 @@ final class TabBarPresenter: ITabBarPresenter {
     }
     
     // MARK: - ITabBarPresenter
-    
     func viewWillAppear() {
-        
         let viewModels: [TabBarViewModel] = viewModelFactory.makeViewModels()
         view?.setup(viewModels: viewModels)
     }

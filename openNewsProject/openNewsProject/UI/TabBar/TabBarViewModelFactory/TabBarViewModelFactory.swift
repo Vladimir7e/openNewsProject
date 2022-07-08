@@ -9,14 +9,11 @@ import Foundation
 import Rswift
 
 protocol ITabBarViewModelFactory {
-    
     func makeViewModels() -> [TabBarViewModel]
 }
 
 final class TabBarViewModelFactory: ITabBarViewModelFactory {
-    
     // MARK: - ITabBarViewModelFactory
-    
     func makeViewModels() -> [TabBarViewModel] {
         [
             .init(type: .emailed, tabBarItem: .init(title: R.string.localizable.emailed(), image: nil, tag: 0)),

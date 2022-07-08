@@ -8,18 +8,15 @@
 import UIKit
 
 protocol IFlowCoordinator {
-    
     func start()
 }
 
 final class FlowCoordinator: IFlowCoordinator {
-
     // Dependencies
     private weak var window: UIWindow?
     private let tabBarAssembly: ITabBarAssembly
 
     // MARK: - Initialization
-
     init(
         window: UIWindow,
         tabBarAssembly: ITabBarAssembly = TabBarAssembly()
@@ -29,9 +26,7 @@ final class FlowCoordinator: IFlowCoordinator {
     }
 
     // MARK: - IFlowCoordinator
-
     func start() {
-        
         window?.backgroundColor = .white
         window?.makeKeyAndVisible()
 
@@ -39,14 +34,11 @@ final class FlowCoordinator: IFlowCoordinator {
     }
 
     // MARK: - Private
-    
     private func goToTabBar() {
-        
         switchTo(tabBarAssembly.assemble())
     }
 
     private func switchTo(_ viewController: UIViewController) {
-        
         let snapShot: UIView? = window?.snapshotView(afterScreenUpdates: true)
         if let snapShot: UIView = snapShot {
             window?.addSubview(snapShot)
@@ -67,7 +59,6 @@ final class FlowCoordinator: IFlowCoordinator {
     }
 
     private func dismiss(_ viewController: UIViewController, completion: @escaping () -> Void) {
-        
         if viewController.presentedViewController != nil {
             self.dismiss(viewController, completion: {
                 viewController.dismiss(animated: false, completion: {

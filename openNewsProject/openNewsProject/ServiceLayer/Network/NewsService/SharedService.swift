@@ -8,13 +8,10 @@
 import Foundation
 import Alamofire
 
-
 class SharedService: NewsServiceProtocol {
-    
     private let networkManager: NetworkManagerProtocol = NetworkManager()
 
     func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
-        
         let path: String = networkManager.url + "/shared/30.json"
 
         guard let url = URL(string: path) else {

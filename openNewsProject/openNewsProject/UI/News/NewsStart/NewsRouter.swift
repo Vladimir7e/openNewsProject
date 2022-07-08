@@ -8,24 +8,20 @@
 import UIKit
 
 protocol INewsRouter {
-    
     func showDetailScreen(detailViewModel: DetailViewModel)
 }
 
 final class NewsRouter: INewsRouter {
-
     // Dependencies
     weak var transitionHandler: UIViewController?
-
     let detailAssembly: IDetailAssembly
 
+    // MARK: - Initialization
     init(detailAssembly: IDetailAssembly) {
-        
         self.detailAssembly = detailAssembly
     }
     
     func showDetailScreen(detailViewModel: DetailViewModel) {
-        
         let viewController: UIViewController = detailAssembly.assemble(detailViewModel: detailViewModel)
         transitionHandler?.navigationController?.pushViewController(viewController, animated: true)
     }

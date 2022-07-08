@@ -9,11 +9,9 @@ import Foundation
 import Alamofire
 
 class FavoritesService: NewsServiceProtocol {
-    
     private let storage: Storable = Storage()
     
     func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
-        
         var news: [News] = []
         
         storage.fetchData().forEach { model in

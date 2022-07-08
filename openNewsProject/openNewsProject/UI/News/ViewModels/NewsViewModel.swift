@@ -8,13 +8,10 @@
 import Foundation
 
 struct NewsViewModel {
-    
     static let empty: NewsViewModel = .init(cellModels: [])
-    
     let cellModels: [CellViewModel]
 }
 
 enum CellViewModel {
-    
     case defaultCell(NewsCellViewModel)
 }
