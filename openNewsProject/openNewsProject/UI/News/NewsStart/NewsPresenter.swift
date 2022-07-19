@@ -49,7 +49,7 @@ class NewsPresenter {
 
     // MARK: - Private
     private func getNews() {
-        view?.startActivityIndicator()
+        view?.showActivityIndicator()
         networkService.getNews { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
@@ -57,9 +57,9 @@ class NewsPresenter {
                     self?.updateModel(with: response.results)
                     self?.view?.reloadData()
                 case .failure(let error):
-                    self?.view?.errorAlert(message: error.localizedDescription)
+                    self?.view?.presentErrorAlert(item: error)
                 }
-                self?.view?.finishActivityIndicator()
+                self?.view?.hideActivityIndicator()
                 self?.view?.endRefreshing()
             }
         }
@@ -73,6 +73,7 @@ class NewsPresenter {
 extension NewsPresenter: INewsPresenter {
     func viewDidLoad() {
         view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
+        getNews()
     }
     
     func viewWillAppear() {

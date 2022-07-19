@@ -11,7 +11,7 @@ import Alamofire
 class FavoritesService: NewsServiceProtocol {
     private let storage: Storable = Storage()
     
-    func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
+    func getNews(completion: @escaping (Result<NewsResponseModel, NetworkError>) -> Void) {
         var news: [News] = []
         
         storage.fetchData().forEach { model in

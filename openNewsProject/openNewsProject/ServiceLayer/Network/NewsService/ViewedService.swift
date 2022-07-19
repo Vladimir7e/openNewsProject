@@ -11,13 +11,10 @@ import Alamofire
 class ViewedService: NewsServiceProtocol {
     private let networkManager: NetworkManagerProtocol = NetworkManager()
 
-    func getNews(completion: @escaping (Result<NewsResponseModel, AFError>) -> Void) {
+    func getNews(completion: @escaping (Result<NewsResponseModel, NetworkError>) -> Void) {
         let path: String = networkManager.url + "/viewed/30.json"
 
-        guard let url = URL(string: path) else {
-            completion(.failure(.invalidURL(url: path)))
-            return
-        }
+        guard let url = URL(string: path) else { return }
 
         networkManager.loadData(url: url, completion: completion)
     }

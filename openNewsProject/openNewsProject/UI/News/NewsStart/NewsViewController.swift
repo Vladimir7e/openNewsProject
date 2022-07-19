@@ -7,12 +7,9 @@
 
 import UIKit
 
-protocol INewsViewController: AnyObject {
+protocol INewsViewController: AnyObject, ActivityIndicatorProtocol, ErrorAlertProtocol {
     func reloadData()
     func setupTopContainer(with viewModel: NewsTopContainerViewModel)
-    func errorAlert(message: String)
-    func startActivityIndicator()
-    func finishActivityIndicator()
     func endRefreshing()
 }
 
@@ -25,7 +22,7 @@ final class NewsViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
     private let refreshControl: UIRefreshControl = UIRefreshControl()
-    private let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
     // MARK: - Initialization
     init(
@@ -68,19 +65,6 @@ final class NewsViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-    func startActivityIndicator() {
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = UIActivityIndicatorView.Style.medium
-        view.addSubview(activityIndicator)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    func finishActivityIndicator() {
-        activityIndicator.stopAnimating()
-    }
-    
     private func setupRefreshControl() {
         if #available(iOS 10.0, *) {
             collectionView.refreshControl = refreshControl
@@ -97,11 +81,6 @@ final class NewsViewController: UIViewController {
     
     func endRefreshing() {
         refreshControl.endRefreshing()
-
-    }
-    
-    func errorAlert(message: String) {
-        presentErrorAlert(message: message)
     }
 }
 
