@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 import CoreData
 
-protocol IDetailViewController: AnyObject {
+protocol IDetailViewController: AnyObject, ActivityIndicatorProtocol, ErrorAlertProtocol {
     func setup(with viewModel: DetailViewModel)
     func setButtonState(isSelected: Bool)
 }
@@ -21,6 +21,7 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     // MARK: - IBOutlet
     @IBOutlet weak var webView: WKWebView!
     private let saveButton: UIButton = UIButton(type: .system)
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     // MARK: - Initialization
     init(
@@ -37,9 +38,22 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         setup()
         presenter.viewDidLoad()
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!,
+                 withError error: Error) {
+        presentErrorAlert(item: NetworkError.server(.init(errorDescription: error.localizedDescription)))
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        presenter.activityIndicatorDidCommit()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        presenter.activityIndicatorDidFinish()
     }
     
     private func setup() {
@@ -75,6 +89,7 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
 
 extension DetailViewController: IDetailViewController {
     func setup(with viewModel: DetailViewModel) {
+        showActivityIndicator()
         if let url: URL = .init(string: viewModel.url) {
             webView.load(URLRequest(url: url))
         }

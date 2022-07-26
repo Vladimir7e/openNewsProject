@@ -11,6 +11,8 @@ import UIKit
 protocol IDetailPresenter: AnyObject {
     func viewDidLoad()
     func didTapRightItemButton(isSelected: Bool)
+    func activityIndicatorDidCommit()
+    func activityIndicatorDidFinish()
 }
 
 class DetailPresenter {
@@ -36,7 +38,7 @@ class DetailPresenter {
         }
     }
     
-    func buttonLogic() {
+    private func buttonLogic() {
         let models: [DetailViewModel] = storage.fetchData()
         for model in models where model.id == viewModel.id {
             view?.setButtonState(isSelected: true)
@@ -52,5 +54,13 @@ extension DetailPresenter: IDetailPresenter {
     
     func didTapRightItemButton(isSelected: Bool) {
         buttonAction(isSelected: isSelected)
+    }
+    
+    func activityIndicatorDidCommit() {
+        view?.showActivityIndicator()
+    }
+    
+    func activityIndicatorDidFinish() {
+        view?.hideActivityIndicator()
     }
 }

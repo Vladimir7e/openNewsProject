@@ -73,7 +73,6 @@ class NewsPresenter {
 extension NewsPresenter: INewsPresenter {
     func viewDidLoad() {
         view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
-        getNews()
     }
     
     func viewWillAppear() {
