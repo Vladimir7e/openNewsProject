@@ -45,7 +45,7 @@ final class NewsViewModelFactory: INewsViewModelFactory {
         
         return cellModels
     }
-
+    
     private func makeDefaultCellModel(newsModel: News, actions: NewsActions) -> NewsCellViewModel {
         .init(
             id: newsModel.id,
@@ -53,13 +53,27 @@ final class NewsViewModelFactory: INewsViewModelFactory {
             title: newsModel.title,
             description: newsModel.publishedDate,
             tapAction: { [weak actions] in
-                actions?.didTapDefaultCell(detailViewModel: .init(
-                    id: newsModel.id,
-                    title: newsModel.title,
-                    url: newsModel.url,
-                    imagePath: newsModel.media.first?.mediaMetadata.first?.url,
-                    publishedDate: newsModel.publishedDate))
+                actions?.didTapDefaultCell(
+                    newsModel: newsModel
+                )
             }
         )
     }
+
+//    private func makeDefaultCellModel(newsModel: News, actions: NewsActions) -> NewsCellViewModel {
+//        .init(
+//            id: newsModel.id,
+//            imagePath: newsModel.media.first?.mediaMetadata.first?.url,
+//            title: newsModel.title,
+//            description: newsModel.publishedDate,
+//            tapAction: { [weak actions] in
+//                actions?.didTapDefaultCell(detailViewModel: .init(
+//                    id: newsModel.id,
+//                    title: newsModel.title,
+//                    url: newsModel.url,
+//                    imagePath: newsModel.media.first?.mediaMetadata.first?.url,
+//                    publishedDate: newsModel.publishedDate))
+//            }
+//        )
+//    }
 }

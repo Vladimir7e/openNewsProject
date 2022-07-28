@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 protocol NewsActions: AnyObject {
-    func didTapDefaultCell(detailViewModel: DetailViewModel)
+//    func didTapDefaultCell(detailViewModel: DetailViewModel)
+    func didTapDefaultCell(newsModel: News)
 }
 
 protocol INewsPresenter: AnyObject {
@@ -88,7 +89,8 @@ extension NewsPresenter: INewsPresenter {
 }
 
 extension NewsPresenter: NewsActions {
-    func didTapDefaultCell(detailViewModel: DetailViewModel) {
-        router.showDetailScreen(detailViewModel: detailViewModel)
+    func didTapDefaultCell(newsModel: News) {
+//        router.showDetailScreen(detailViewModel: detailViewModel)
+        router.showDescriptionScreen(newsModel: newsModel)
     }
 }

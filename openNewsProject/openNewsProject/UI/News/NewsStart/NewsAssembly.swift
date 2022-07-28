@@ -15,7 +15,8 @@ protocol INewsAssembly {
 final class NewsAssembly: INewsAssembly {
     func assemble(newsType: ModelType) -> UIViewController {
         let detailAssembly: DetailAssembly = DetailAssembly()
-        let router: NewsRouter = NewsRouter(detailAssembly: detailAssembly)
+        let descriptionAssembly: DescriptionAssembly = DescriptionAssembly()
+        let router: NewsRouter = NewsRouter(detailAssembly: detailAssembly, descriptionAssembly: descriptionAssembly)
         let viewModelFactory: NewsViewModelFactory = NewsViewModelFactory()
         let storage: Storage = Storage()
         

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B068C6628912CA30056B35B /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6528912CA30056B35B /* DescriptionViewController.swift */; };
+		8B068C69289151100056B35B /* DescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C68289151100056B35B /* DescriptionViewModel.swift */; };
+		8B068C6B289151C90056B35B /* DescriptionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6A289151C90056B35B /* DescriptionAssembly.swift */; };
+		8B068C6D28916CC80056B35B /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6C28916CC80056B35B /* DescriptionPresenter.swift */; };
+		8B068C6F28928B3E0056B35B /* DescriptionViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6E28928B3E0056B35B /* DescriptionViewModelFactory.swift */; };
 		8B1393E12844BB7D0067D0A2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1393DF2844BB7D0067D0A2 /* DetailViewController.swift */; };
 		8B1393E22844BB7D0067D0A2 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1393E02844BB7D0067D0A2 /* DetailViewController.xib */; };
 		8B3CB5E2282E3AE8009F2651 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3CB5E1282E3AE8009F2651 /* NewsPresenter.swift */; };
@@ -57,6 +62,11 @@
 
 /* Begin PBXFileReference section */
 		26C4B04583583330EFA8775E /* Pods-openNewsProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openNewsProject.release.xcconfig"; path = "Target Support Files/Pods-openNewsProject/Pods-openNewsProject.release.xcconfig"; sourceTree = "<group>"; };
+		8B068C6528912CA30056B35B /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
+		8B068C68289151100056B35B /* DescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewModel.swift; sourceTree = "<group>"; };
+		8B068C6A289151C90056B35B /* DescriptionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionAssembly.swift; sourceTree = "<group>"; };
+		8B068C6C28916CC80056B35B /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
+		8B068C6E28928B3E0056B35B /* DescriptionViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewModelFactory.swift; sourceTree = "<group>"; };
 		8B1393DF2844BB7D0067D0A2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8B1393E02844BB7D0067D0A2 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		8B3CB5E1282E3AE8009F2651 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
@@ -139,6 +149,27 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8B068C6428912B8C0056B35B /* Description */ = {
+			isa = PBXGroup;
+			children = (
+				8B068C67289150E80056B35B /* ViewModels */,
+				8B068C6E28928B3E0056B35B /* DescriptionViewModelFactory.swift */,
+				8B068C6A289151C90056B35B /* DescriptionAssembly.swift */,
+				8B068C6C28916CC80056B35B /* DescriptionPresenter.swift */,
+				8B068C6528912CA30056B35B /* DescriptionViewController.swift */,
+			);
+			name = Description;
+			path = News/Description;
+			sourceTree = "<group>";
+		};
+		8B068C67289150E80056B35B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				8B068C68289151100056B35B /* DescriptionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		8B3CB5E5282E3E34009F2651 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +186,7 @@
 				8BC6306F2835639F0012A75E /* Common */,
 				8BC6305628355E100012A75E /* TabBar */,
 				8B3CB5EB282E662C009F2651 /* News */,
+				8B068C6428912B8C0056B35B /* Description */,
 				8B996DB22846346A003305CE /* Detail */,
 			);
 			path = UI;
@@ -581,10 +613,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B068C6F28928B3E0056B35B /* DescriptionViewModelFactory.swift in Sources */,
 				8BC63065283560750012A75E /* TabBarViewModelFactory.swift in Sources */,
 				8B5302F028256BE8005D7F2F /* AppDelegate.swift in Sources */,
 				8B977996286F24B100EA4748 /* R.generated.swift in Sources */,
 				8B1393E12844BB7D0067D0A2 /* DetailViewController.swift in Sources */,
+				8B068C6D28916CC80056B35B /* DescriptionPresenter.swift in Sources */,
 				8B4B004C2836CFD000366322 /* NewsViewModelFactory.swift in Sources */,
 				8B9779A12874470500EA4748 /* FavoritesService.swift in Sources */,
 				8B524D44288183380087DBEB /* JSONDecoder.swift in Sources */,
@@ -594,6 +628,7 @@
 				8BC6305D28355F750012A75E /* TabBarAssembly.swift in Sources */,
 				8B94CFC9287C62EC007414B6 /* ActivityIndicator.swift in Sources */,
 				8BC630752835653E0012A75E /* NewsCellTypeResolver.swift in Sources */,
+				8B068C6628912CA30056B35B /* DescriptionViewController.swift in Sources */,
 				8B94CFCC287C7422007414B6 /* ErrorAlert.swift in Sources */,
 				8B5302FA28256BE8005D7F2F /* openNewsProject.xcdatamodeld in Sources */,
 				8B3CB5E4282E3E29009F2651 /* News.swift in Sources */,
@@ -605,8 +640,10 @@
 				8B996DB1284623A4003305CE /* NewsRouter.swift in Sources */,
 				8B996DB428463640003305CE /* DetailAssembly.swift in Sources */,
 				8BC6305F28355F7F0012A75E /* TabBarController.swift in Sources */,
+				8B068C69289151100056B35B /* DescriptionViewModel.swift in Sources */,
 				8BF1B9012868DF5800598DD3 /* NetworkManager.swift in Sources */,
 				8B97799B287431F400EA4748 /* SharedService.swift in Sources */,
+				8B068C6B289151C90056B35B /* DescriptionAssembly.swift in Sources */,
 				8B9779982874316B00EA4748 /* EmailedService.swift in Sources */,
 				8B524D4728819E670087DBEB /* BodyError.swift in Sources */,
 				8BC6305928355E4D0012A75E /* TabBarViewControllersResolver.swift in Sources */,
