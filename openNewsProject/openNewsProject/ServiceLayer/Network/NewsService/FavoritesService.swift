@@ -23,6 +23,7 @@ class FavoritesService: NewsServiceProtocol {
                     url: model.url,
                     id: model.id,
                     title: model.title,
+                    abstract: model.abstract,
                     publishedDate: model.publishedDate,
                     media: [media]
                 )

@@ -15,6 +15,7 @@ struct News: Decodable {
     let url: String
     let id: Int
     let title: String
+    let abstract: String
     let publishedDate: String
     let media: [Media]
     
@@ -22,6 +23,7 @@ struct News: Decodable {
         case url
         case id
         case title
+        case abstract
         case publishedDate = "published_date"
         case media
     }

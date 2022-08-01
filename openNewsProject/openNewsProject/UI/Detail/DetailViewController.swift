@@ -11,7 +11,7 @@ import CoreData
 
 protocol IDetailViewController: AnyObject, ActivityIndicatorProtocol, ErrorAlertProtocol {
     func setup(with viewModel: DetailViewModel)
-    func setButtonState(isSelected: Bool)
+//    func setButtonState(isSelected: Bool)
 }
 
 class DetailViewController: UIViewController, WKNavigationDelegate {
@@ -57,34 +57,34 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func setup() {
-        setupNavigation()
-        setupSaveButton()
+//        setupNavigation()
+//        setupSaveButton()
         setupWebView()
     }
     
-    private func setupNavigation() {
-        navigationItem.rightBarButtonItem = .init(customView: saveButton)
-    }
+//    private func setupNavigation() {
+//        navigationItem.rightBarButtonItem = .init(customView: saveButton)
+//    }
     
-    private func setupSaveButton() {
-        saveButton.setTitle(R.string.localizable.save(), for: .normal)
-        saveButton.setTitle(R.string.localizable.delete(), for: .selected)
-        saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        saveButton.setTitleColor(.black, for: .normal)
-        saveButton.setTitleColor(.black, for: .selected)
-        saveButton.tintColor = .white
-        saveButton.addTarget(self, action: #selector(favorites), for: .touchUpInside)
-    }
+//    private func setupSaveButton() {
+//        saveButton.setTitle(R.string.localizable.save(), for: .normal)
+//        saveButton.setTitle(R.string.localizable.delete(), for: .selected)
+//        saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
+//        saveButton.setTitleColor(.black, for: .normal)
+//        saveButton.setTitleColor(.black, for: .selected)
+//        saveButton.tintColor = .white
+//        saveButton.addTarget(self, action: #selector(favorites), for: .touchUpInside)
+//    }
     
     private func setupWebView() {
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
     }
     
-    @objc private func favorites() {
-        saveButton.isSelected = !saveButton.isSelected
-        presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
-    }
+//    @objc private func favorites() {
+//        saveButton.isSelected = !saveButton.isSelected
+//        presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
+//    }
 }
 
 extension DetailViewController: IDetailViewController {
@@ -96,7 +96,7 @@ extension DetailViewController: IDetailViewController {
         navigationItem.title = viewModel.title
     }
     
-    func setButtonState(isSelected: Bool) {
-        saveButton.isSelected = isSelected
-    }
+//    func setButtonState(isSelected: Bool) {
+//        saveButton.isSelected = isSelected
+//    }
 }

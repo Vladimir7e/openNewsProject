@@ -10,7 +10,8 @@ import Foundation
 struct DescriptionViewModel {
     let id: Int
     let title: String
-//    let url: String
-//    let imagePath: String?
-//    let publishedDate: String
+    let abstract: String
+    let url: String
+    let imagePath: String?
+    let publishedDate: String
 }

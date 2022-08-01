@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21A559" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="NewsData" representedClassName="NewsData" syncable="YES" codeGenerationType="class">
+        <attribute name="abstract" optional="YES" attributeType="String"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="imagePath" optional="YES" attributeType="String"/>
         <attribute name="publishedDate" attributeType="String"/>
@@ -8,6 +9,6 @@
         <attribute name="url" attributeType="String"/>
     </entity>
     <elements>
-        <element name="NewsData" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="NewsData" positionX="-63" positionY="-18" width="128" height="119"/>
     </elements>
 </model>

@@ -10,15 +10,15 @@ import UIKit
 import CoreData
 
 protocol Storable {
-    func save(model: DetailViewModel)
-    func fetchData() -> [DetailViewModel]
+    func save(model: DescriptionViewModel)
+    func fetchData() -> [DescriptionViewModel]
     func remove(id: Int)
 }
 
 class Storage: Storable {
     private var objects: [NSManagedObject] = []
     
-    func save(model: DetailViewModel) {
+    func save(model: DescriptionViewModel) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -28,6 +28,7 @@ class Storage: Storable {
         
         newsData.setValue(model.id, forKey: "id")
         newsData.setValue(model.title, forKey: "title")
+        newsData.setValue(model.abstract, forKey: "abstract")
         newsData.setValue(model.url, forKey: "url")
         newsData.setValue(model.imagePath, forKey: "imagePath")
         newsData.setValue(model.publishedDate, forKey: "publishedDate")
@@ -40,7 +41,7 @@ class Storage: Storable {
         }
     }
     
-    func fetchData() -> [DetailViewModel] {
+    func fetchData() -> [DescriptionViewModel] {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return []
         }
@@ -52,17 +53,19 @@ class Storage: Storable {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-        var array = [DetailViewModel]()
+        var array = [DescriptionViewModel]()
         for object in objects {
             guard let id = object.value(forKey: "id") as? Int else { return []}
             guard let title = object.value(forKey: "title") as? String else { return []}
+            guard let abstract = object.value(forKey: "abstract") as? String else { return []}
             guard let url = object.value(forKey: "url") as? String else { return []}
             let imagePath = object.value(forKey: "imagePath") as? String
             guard let publishedDate = object.value(forKey: "publishedDate") as? String else { return []}
             
-            let newsObject: DetailViewModel = .init(
+            let newsObject: DescriptionViewModel = .init(
                 id: id,
                 title: title,
+                abstract: abstract,
                 url: url,
                 imagePath: imagePath,
                 publishedDate: publishedDate

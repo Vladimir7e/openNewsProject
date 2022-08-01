@@ -14,6 +14,13 @@ protocol IDescriptionViewModelFactory {
 
 final class DescriptionViewModelFactory: IDescriptionViewModelFactory {
     func makeViewModel(newsModels: News) -> DescriptionViewModel {
-        .init(id: newsModels.id, title: newsModels.title)
+        .init(
+            id: newsModels.id,
+            title: newsModels.title,
+            abstract: newsModels.abstract,
+            url: newsModels.url,
+            imagePath: newsModels.media.first?.mediaMetadata.last?.url,
+            publishedDate: newsModels.publishedDate
+        )
     }
 }
