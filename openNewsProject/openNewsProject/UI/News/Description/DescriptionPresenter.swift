@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 
+
 protocol IDescriptionPresenter: AnyObject {
     func viewDidLoad()
     func didTapRightItemButton(isSelected: Bool)
+    func some1()
 }
 
 class DescriptionPresenter {
@@ -18,6 +20,7 @@ class DescriptionPresenter {
     weak var view: IDescriptionViewController?
     private var viewModel: DescriptionViewModel?
     private let viewModelFactory: IDescriptionViewModelFactory
+    private let router: IDescriptionRouter
     private let newsModel: News
     private let storage: Storable
 
@@ -25,10 +28,12 @@ class DescriptionPresenter {
     init(
         newsModel: News,
         viewModelFactory: IDescriptionViewModelFactory,
+        router: IDescriptionRouter,
         storage: Storable
     ) {
         self.newsModel = newsModel
         self.viewModelFactory = viewModelFactory
+        self.router = router
         self.storage = storage
     }
     
@@ -57,20 +62,31 @@ class DescriptionPresenter {
             view?.setButtonState(isSelected: true)
         }
     }
+    
+    private func showDetailScreen(detailViewModel: DetailViewModel) {
+        router.showDetailScreen(detailViewModel: detailViewModel)
+    }
 }
 
 extension DescriptionPresenter: IDescriptionPresenter {
     func viewDidLoad() {
-        buttonLogic()
         updateModel(with: newsModel)
         
         guard let viewModel = viewModel else {
             return
         }
+        buttonLogic()
         view?.setup(viewModel: viewModel)
     }
     
     func didTapRightItemButton(isSelected: Bool) {
         buttonAction(isSelected: isSelected)
+    }
+    
+    func some1() {
+        guard let viewModel = viewModel else {
+            return
+        }
+        showDetailScreen(detailViewModel: .init(id: viewModel.id, title: viewModel.title, url: viewModel.url))
     }
 }

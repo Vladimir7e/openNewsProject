@@ -13,6 +13,7 @@ protocol IDetailPresenter: AnyObject {
 //    func didTapRightItemButton(isSelected: Bool)
     func activityIndicatorDidCommit()
     func activityIndicatorDidFinish()
+    func refreshData()
 }
 
 class DetailPresenter {
@@ -62,5 +63,9 @@ extension DetailPresenter: IDetailPresenter {
     
     func activityIndicatorDidFinish() {
         view?.hideActivityIndicator()
+    }
+    
+    func refreshData() {
+        view?.setup(with: viewModel)
     }
 }

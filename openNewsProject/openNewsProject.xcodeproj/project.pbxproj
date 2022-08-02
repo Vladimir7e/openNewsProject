@@ -12,6 +12,7 @@
 		8B068C6B289151C90056B35B /* DescriptionAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6A289151C90056B35B /* DescriptionAssembly.swift */; };
 		8B068C6D28916CC80056B35B /* DescriptionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6C28916CC80056B35B /* DescriptionPresenter.swift */; };
 		8B068C6F28928B3E0056B35B /* DescriptionViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C6E28928B3E0056B35B /* DescriptionViewModelFactory.swift */; };
+		8B068C712897EB7D0056B35B /* DescriptionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B068C702897EB7D0056B35B /* DescriptionRouter.swift */; };
 		8B1393E12844BB7D0067D0A2 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1393DF2844BB7D0067D0A2 /* DetailViewController.swift */; };
 		8B1393E22844BB7D0067D0A2 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B1393E02844BB7D0067D0A2 /* DetailViewController.xib */; };
 		8B3CB5E2282E3AE8009F2651 /* NewsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3CB5E1282E3AE8009F2651 /* NewsPresenter.swift */; };
@@ -67,6 +68,7 @@
 		8B068C6A289151C90056B35B /* DescriptionAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionAssembly.swift; sourceTree = "<group>"; };
 		8B068C6C28916CC80056B35B /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
 		8B068C6E28928B3E0056B35B /* DescriptionViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewModelFactory.swift; sourceTree = "<group>"; };
+		8B068C702897EB7D0056B35B /* DescriptionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionRouter.swift; sourceTree = "<group>"; };
 		8B1393DF2844BB7D0067D0A2 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		8B1393E02844BB7D0067D0A2 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		8B3CB5E1282E3AE8009F2651 /* NewsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPresenter.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				8B068C67289150E80056B35B /* ViewModels */,
 				8B068C6E28928B3E0056B35B /* DescriptionViewModelFactory.swift */,
+				8B068C702897EB7D0056B35B /* DescriptionRouter.swift */,
 				8B068C6A289151C90056B35B /* DescriptionAssembly.swift */,
 				8B068C6C28916CC80056B35B /* DescriptionPresenter.swift */,
 				8B068C6528912CA30056B35B /* DescriptionViewController.swift */,
@@ -613,6 +616,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B068C712897EB7D0056B35B /* DescriptionRouter.swift in Sources */,
 				8B068C6F28928B3E0056B35B /* DescriptionViewModelFactory.swift in Sources */,
 				8BC63065283560750012A75E /* TabBarViewModelFactory.swift in Sources */,
 				8B5302F028256BE8005D7F2F /* AppDelegate.swift in Sources */,

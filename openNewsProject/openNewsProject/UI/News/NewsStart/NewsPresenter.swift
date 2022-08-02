@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 protocol NewsActions: AnyObject {
-//    func didTapDefaultCell(detailViewModel: DetailViewModel)
     func didTapDefaultCell(newsModel: News)
 }
 
@@ -74,11 +73,13 @@ class NewsPresenter {
 extension NewsPresenter: INewsPresenter {
     func viewDidLoad() {
         view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
+        getNews()
     }
     
     func viewWillAppear() {
         if isFirstAppear {
             isFirstAppear = false
+        } else {
             getNews()
         }
     }
@@ -90,7 +91,6 @@ extension NewsPresenter: INewsPresenter {
 
 extension NewsPresenter: NewsActions {
     func didTapDefaultCell(newsModel: News) {
-//        router.showDetailScreen(detailViewModel: detailViewModel)
         router.showDescriptionScreen(newsModel: newsModel)
     }
 }

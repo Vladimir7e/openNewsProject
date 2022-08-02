@@ -20,7 +20,8 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - IBOutlet
     @IBOutlet weak var webView: WKWebView!
-    private let saveButton: UIButton = UIButton(type: .system)
+//    private let saveButton: UIButton = UIButton(type: .system)
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     // MARK: - Initialization
@@ -46,6 +47,7 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!,
                  withError error: Error) {
         presentErrorAlert(item: NetworkError.server(.init(errorDescription: error.localizedDescription)))
+        presenter.activityIndicatorDidFinish()
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
@@ -60,6 +62,22 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
 //        setupNavigation()
 //        setupSaveButton()
         setupWebView()
+        setupRefreshControl()
+    }
+    
+    private func setupRefreshControl() {
+        let refreshControl: UIRefreshControl = UIRefreshControl()
+            refreshControl.addTarget(self, action: #selector(reloadWebView(_:)), for: .valueChanged)
+            webView.scrollView.addSubview(refreshControl)
+    }
+    
+    @objc func reloadWebView(_ sender: UIRefreshControl) {
+        presenter.refreshData()
+        sender.endRefreshing()
+    }
+    
+    func endRefreshing() {
+        refreshControl.endRefreshing()
     }
     
 //    private func setupNavigation() {

@@ -8,7 +8,6 @@
 import UIKit
 import Kingfisher
 import CoreData
-import SwiftUI
 
 protocol IDescriptionViewController: AnyObject {
     func setup(viewModel: DescriptionViewModel)
@@ -60,7 +59,7 @@ class DescriptionViewController: UIViewController {
         return view
     }()
     
-    private let button: UIButton = {
+    private var button: UIButton = {
         let view: UIButton = UIButton()
         view.setTitle("read more", for: .normal)
         view.backgroundColor = UIColor.red
@@ -141,15 +140,20 @@ extension DescriptionViewController: IDescriptionViewController {
     func setup(viewModel: DescriptionViewModel) {
         titleLabel.text = viewModel.title
         publishedDateLabel.text = viewModel.publishedDate
+        abstractLabel.text = viewModel.abstract
+        button.addTarget(self, action: #selector(some), for: .touchUpInside)
         imageView.kf.indicatorType = .activity
         guard let imagePath: String = viewModel.imagePath else {
             return
         }
         imageView.kf.setImage(with: URL(string: imagePath))
-        abstractLabel.text = viewModel.abstract
     }
     
     func setButtonState(isSelected: Bool) {
         saveButton.isSelected = isSelected
+    }
+    
+    @objc func some() {
+        presenter.some1()
     }
 }
