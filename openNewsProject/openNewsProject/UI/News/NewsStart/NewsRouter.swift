@@ -8,9 +8,7 @@
 import UIKit
 
 protocol INewsRouter {
-//    func showDetailScreen(detailViewModel: DetailViewModel)
     func showDescriptionScreen(newsModel: News)
-
 }
 
 final class NewsRouter: INewsRouter {
@@ -30,9 +28,4 @@ final class NewsRouter: INewsRouter {
         let viewController: UIViewController = descriptionAssembly.assemble(newsModel: newsModel)
         transitionHandler?.navigationController?.pushViewController(viewController, animated: true)
     }
-    
-//    func showDetailScreen(detailViewModel: DetailViewModel) {
-//        let viewController: UIViewController = detailAssembly.assemble(detailViewModel: detailViewModel)
-//        transitionHandler?.navigationController?.pushViewController(viewController, animated: true)
-//    }
 }

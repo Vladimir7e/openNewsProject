@@ -55,22 +55,17 @@ class Storage: Storable {
         }
         var array = [DescriptionViewModel]()
         for object in objects {
-            guard let id = object.value(forKey: "id") as? Int else { return []}
-            guard let title = object.value(forKey: "title") as? String else { return []}
-            guard let abstract = object.value(forKey: "abstract") as? String else { return []}
-            guard let url = object.value(forKey: "url") as? String else { return []}
-            let imagePath = object.value(forKey: "imagePath") as? String
-            guard let publishedDate = object.value(forKey: "publishedDate") as? String else { return []}
-            
-            let newsObject: DescriptionViewModel = .init(
-                id: id,
-                title: title,
-                abstract: abstract,
-                url: url,
-                imagePath: imagePath,
-                publishedDate: publishedDate
-            )
-            array.append(newsObject)
+            if let newsData: NewsData = object as? NewsData {
+                let newsObject: DescriptionViewModel = .init(
+                    id: Int(newsData.id),
+                    title: newsData.title ?? "",
+                    abstract: newsData.abstract ?? "",
+                    url: newsData.url ?? "",
+                    imagePath: newsData.imagePath,
+                    publishedDate: newsData.publishedDate ?? ""
+                )
+                array.append(newsObject)
+            }
         }
         return array
     }
@@ -83,7 +78,6 @@ class Storage: Storable {
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "NewsData")
         
         if let objects = try? managedContext.fetch(fetchRequest) {
-            
             for object in objects {
                 guard let objectId = object.value(forKey: "id") as? Int else { return }
                 if objectId == id {

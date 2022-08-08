@@ -11,7 +11,6 @@ import CoreData
 
 protocol IDetailViewController: AnyObject, ActivityIndicatorProtocol, ErrorAlertProtocol {
     func setup(with viewModel: DetailViewModel)
-//    func setButtonState(isSelected: Bool)
 }
 
 class DetailViewController: UIViewController, WKNavigationDelegate {
@@ -20,7 +19,8 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - IBOutlet
     @IBOutlet weak var webView: WKWebView!
-//    private let saveButton: UIButton = UIButton(type: .system)
+    
+    // UI elements
     private let refreshControl: UIRefreshControl = UIRefreshControl()
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -39,7 +39,6 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setup()
         presenter.viewDidLoad()
     }
@@ -59,8 +58,6 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
     }
     
     private func setup() {
-//        setupNavigation()
-//        setupSaveButton()
         setupWebView()
         setupRefreshControl()
     }
@@ -71,38 +68,19 @@ class DetailViewController: UIViewController, WKNavigationDelegate {
             webView.scrollView.addSubview(refreshControl)
     }
     
-    @objc func reloadWebView(_ sender: UIRefreshControl) {
+    @objc private func reloadWebView(_ sender: UIRefreshControl) {
         presenter.refreshData()
         sender.endRefreshing()
     }
     
-    func endRefreshing() {
+    private func endRefreshing() {
         refreshControl.endRefreshing()
     }
-    
-//    private func setupNavigation() {
-//        navigationItem.rightBarButtonItem = .init(customView: saveButton)
-//    }
-    
-//    private func setupSaveButton() {
-//        saveButton.setTitle(R.string.localizable.save(), for: .normal)
-//        saveButton.setTitle(R.string.localizable.delete(), for: .selected)
-//        saveButton.titleLabel?.adjustsFontSizeToFitWidth = true
-//        saveButton.setTitleColor(.black, for: .normal)
-//        saveButton.setTitleColor(.black, for: .selected)
-//        saveButton.tintColor = .white
-//        saveButton.addTarget(self, action: #selector(favorites), for: .touchUpInside)
-//    }
     
     private func setupWebView() {
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = true
     }
-    
-//    @objc private func favorites() {
-//        saveButton.isSelected = !saveButton.isSelected
-//        presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
-//    }
 }
 
 extension DetailViewController: IDetailViewController {
@@ -113,8 +91,4 @@ extension DetailViewController: IDetailViewController {
         }
         navigationItem.title = viewModel.title
     }
-    
-//    func setButtonState(isSelected: Bool) {
-//        saveButton.isSelected = isSelected
-//    }
 }

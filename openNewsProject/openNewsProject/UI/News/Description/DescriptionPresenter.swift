@@ -8,11 +8,10 @@
 import Foundation
 import UIKit
 
-
 protocol IDescriptionPresenter: AnyObject {
     func viewDidLoad()
     func didTapRightItemButton(isSelected: Bool)
-    func some1()
+    func didTapDetailScreenButton()
 }
 
 class DescriptionPresenter {
@@ -37,23 +36,23 @@ class DescriptionPresenter {
         self.storage = storage
     }
     
+    // MARK: - Private
     private func updateModel(with news: News) {
         viewModel = viewModelFactory.makeViewModel(newsModels: news)
     }
     
-    private func buttonAction(isSelected: Bool) {
+    private func updateFavoritesTab(isSelected: Bool) {
         guard let viewModel = viewModel else {
             return
         }
         if isSelected {
-           
             storage.save(model: viewModel)
         } else {
             storage.remove(id: viewModel.id)
         }
     }
     
-    private func buttonLogic() {
+    private func setSaveButtonState() {
         let models: [DescriptionViewModel] = storage.fetchData()
         guard let viewModel = viewModel else {
             return
@@ -61,10 +60,6 @@ class DescriptionPresenter {
         for model in models where model.id == viewModel.id {
             view?.setButtonState(isSelected: true)
         }
-    }
-    
-    private func showDetailScreen(detailViewModel: DetailViewModel) {
-        router.showDetailScreen(detailViewModel: detailViewModel)
     }
 }
 
@@ -75,18 +70,18 @@ extension DescriptionPresenter: IDescriptionPresenter {
         guard let viewModel = viewModel else {
             return
         }
-        buttonLogic()
+        setSaveButtonState()
         view?.setup(viewModel: viewModel)
     }
     
     func didTapRightItemButton(isSelected: Bool) {
-        buttonAction(isSelected: isSelected)
+        updateFavoritesTab(isSelected: isSelected)
     }
     
-    func some1() {
+    func didTapDetailScreenButton() {
         guard let viewModel = viewModel else {
             return
         }
-        showDetailScreen(detailViewModel: .init(id: viewModel.id, title: viewModel.title, url: viewModel.url))
+        router.showDetailScreen(detailViewModel: DetailViewModel(id: viewModel.id, title: viewModel.title, url: viewModel.url))
     }
 }

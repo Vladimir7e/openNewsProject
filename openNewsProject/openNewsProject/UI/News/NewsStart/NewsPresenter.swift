@@ -73,14 +73,14 @@ class NewsPresenter {
 extension NewsPresenter: INewsPresenter {
     func viewDidLoad() {
         view?.setupTopContainer(with: viewModelFactory.makeTopContainerViewModel(newsType: newsType))
-        getNews()
+        refreshData()
     }
     
     func viewWillAppear() {
         if isFirstAppear {
             isFirstAppear = false
         } else {
-            getNews()
+            refreshData()
         }
     }
     

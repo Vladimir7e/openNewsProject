@@ -21,6 +21,8 @@ final class NewsViewController: UIViewController {
 
     // MARK: - IBOutlet
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    // UI elements
     private let refreshControl: UIRefreshControl = UIRefreshControl()
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
 
@@ -52,6 +54,7 @@ final class NewsViewController: UIViewController {
         presenter.viewWillAppear()
     }
 
+    // MARK: - Private
     private func setup() {
         setupCollectionView()
         setupRefreshControl()
@@ -124,6 +127,12 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
             cellModel.tapAction()
         }
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+//        if let cell = self.collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
+//            cell.transform = .init(scaleX: 1.1, y: 1.1)
+//        }
+//    }
 }
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout {

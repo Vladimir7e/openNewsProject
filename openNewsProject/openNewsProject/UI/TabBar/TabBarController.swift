@@ -39,7 +39,6 @@ final class TabBarController: UITabBarController, UITabBarControllerDelegate, IT
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         presenter.viewWillAppear()
     }
     

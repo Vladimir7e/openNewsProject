@@ -15,58 +15,20 @@ protocol IDescriptionViewController: AnyObject {
 }
 
 class DescriptionViewController: UIViewController {
-    
+    // Dependencies
     private let presenter: IDescriptionPresenter
     
-    private let scrollView: UIScrollView = {
-        let view: UIScrollView = UIScrollView()
-        view.backgroundColor = .secondarySystemGroupedBackground
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private let saveButton: UIButton = UIButton(type: .system)
-    
-    private let stackView: UIStackView = {
-        let view: UIStackView = UIStackView()
-        view.axis = .vertical
-        view.spacing = 0
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.distribution = .fill
-        return view
-    }()
-    
-    private let titleLabel: UILabel = {
-        let view: UILabel = UILabel()
-        view.numberOfLines = 0
-        view.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
-        return view
-    }()
-    
-    private let publishedDateLabel: UILabel = {
-        let view: UILabel = UILabel()
-        return view
-    }()
-    
-    private let imageView: UIImageView = {
-        let view: UIImageView = UIImageView()
-        return view
-    }()
-    
-    private let abstractLabel: UILabel = {
-        let view: UILabel = UILabel()
-        view.numberOfLines = 0
-        return view
-    }()
-    
-    private var button: UIButton = {
-        let view: UIButton = UIButton()
-        view.setTitle("read more", for: .normal)
-        view.backgroundColor = UIColor.red
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
+    // UI elements
+    private let scrollView: UIScrollView = UIScrollView()
+    private let stackView: UIStackView = UIStackView()
+    private let titleLabel: UILabel = UILabel()
+    private let publishedDateLabel: UILabel = UILabel()
+    private let titleImage: UIImageView = UIImageView()
+    private let descriptionLabel: UILabel = UILabel()
+    private lazy var readMoreButton: UIButton = UIButton(type: .system)
+    private lazy var saveButton: UIButton = UIButton(type: .system)
+
+    // MARK: - Initialization
     init(
         presenter: IDescriptionPresenter) {
             self.presenter = presenter
@@ -77,45 +39,65 @@ class DescriptionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
         presenter.viewDidLoad()
-        setupScrollView()
     }
     
-    private func setupScrollView() {
+    // MARK: - Private
+    
+    private func setup() {
+        setupNavigation()
+        setupUIElements()
+        setupSaveButton()
+    }
+
+    private func setupUIElements() {
         let margins: UILayoutGuide = view.layoutMarginsGuide
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(publishedDateLabel)
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(abstractLabel)
-        stackView.addArrangedSubview(button)
+        stackView.addArrangedSubview(titleImage)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(readMoreButton)
         
+        scrollView.backgroundColor = .secondarySystemGroupedBackground
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
         scrollView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
+        
+        stackView.axis = .vertical
+        stackView.spacing = 0
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
         stackView.setCustomSpacing(10, after: titleLabel)
-        stackView.setCustomSpacing(10, after: abstractLabel)
+        stackView.setCustomSpacing(10, after: descriptionLabel)
         stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 20)
         titleLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
+        
+        titleImage.contentMode = .scaleAspectFit
+        titleImage.clipsToBounds = true
+        
+        descriptionLabel.numberOfLines = 0
+        
+        readMoreButton.setTitle("read more", for: .normal)
+        readMoreButton.backgroundColor = UIColor.red
+        readMoreButton.translatesAutoresizingMaskIntoConstraints = false
     }
-    
-    private func setup() {
-        setupNavigation()
-        setupSaveButton()
-    }
-    
+        
     private func setupNavigation() {
         navigationItem.rightBarButtonItem = .init(customView: saveButton)
     }
@@ -127,12 +109,16 @@ class DescriptionViewController: UIViewController {
         saveButton.setTitleColor(.black, for: .normal)
         saveButton.setTitleColor(.black, for: .selected)
         saveButton.tintColor = .white
-        saveButton.addTarget(self, action: #selector(favorites), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(didTabSaveButton(sender:)), for: .touchUpInside)
     }
     
-    @objc private func favorites() {
-        saveButton.isSelected = !saveButton.isSelected
+    @objc private func didTabSaveButton(sender: UIButton) {
+        sender.isSelected = !sender.isSelected
         presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
+    }
+    
+    @objc private func didTapReadMoreButton() {
+        presenter.didTapDetailScreenButton()
     }
 }
 
@@ -140,20 +126,16 @@ extension DescriptionViewController: IDescriptionViewController {
     func setup(viewModel: DescriptionViewModel) {
         titleLabel.text = viewModel.title
         publishedDateLabel.text = viewModel.publishedDate
-        abstractLabel.text = viewModel.abstract
-        button.addTarget(self, action: #selector(some), for: .touchUpInside)
-        imageView.kf.indicatorType = .activity
+        descriptionLabel.text = viewModel.abstract
+        readMoreButton.addTarget(self, action: #selector(didTapReadMoreButton), for: .touchUpInside)
+        titleImage.kf.indicatorType = .activity
         guard let imagePath: String = viewModel.imagePath else {
             return
         }
-        imageView.kf.setImage(with: URL(string: imagePath))
+        titleImage.kf.setImage(with: URL(string: imagePath))
     }
     
     func setButtonState(isSelected: Bool) {
         saveButton.isSelected = isSelected
-    }
-    
-    @objc func some() {
-        presenter.some1()
     }
 }

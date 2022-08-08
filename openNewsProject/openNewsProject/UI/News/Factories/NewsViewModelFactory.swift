@@ -13,7 +13,6 @@ protocol INewsViewModelFactory {
 }
 
 final class NewsViewModelFactory: INewsViewModelFactory {
-    // MARK: - INewsViewModelFactory
     func makeViewModel(newsModels: [News], actions: NewsActions) -> NewsViewModel {
         .init(cellModels: makeCellModels(newsModels: newsModels, actions: actions))
     }
@@ -47,11 +46,16 @@ final class NewsViewModelFactory: INewsViewModelFactory {
     }
     
     private func makeDefaultCellModel(newsModel: News, actions: NewsActions) -> NewsCellViewModel {
-        .init(
+        var dateString: String = newsModel.publishedDate
+        
+        if let date: Date = DateFormatter.dateFormatterGet.date(from: dateString) {
+            dateString = DateFormatter.dateFormatterPrint.string(from: date)
+        }
+        return .init(
             id: newsModel.id,
             imagePath: newsModel.media.first?.mediaMetadata.first?.url,
             title: newsModel.title,
-            description: newsModel.publishedDate,
+            description: dateString,
             tapAction: { [weak actions] in
                 actions?.didTapDefaultCell(
                     newsModel: newsModel
@@ -59,21 +63,4 @@ final class NewsViewModelFactory: INewsViewModelFactory {
             }
         )
     }
-
-//    private func makeDefaultCellModel(newsModel: News, actions: NewsActions) -> NewsCellViewModel {
-//        .init(
-//            id: newsModel.id,
-//            imagePath: newsModel.media.first?.mediaMetadata.first?.url,
-//            title: newsModel.title,
-//            description: newsModel.publishedDate,
-//            tapAction: { [weak actions] in
-//                actions?.didTapDefaultCell(detailViewModel: .init(
-//                    id: newsModel.id,
-//                    title: newsModel.title,
-//                    url: newsModel.url,
-//                    imagePath: newsModel.media.first?.mediaMetadata.first?.url,
-//                    publishedDate: newsModel.publishedDate))
-//            }
-//        )
-//    }
 }
