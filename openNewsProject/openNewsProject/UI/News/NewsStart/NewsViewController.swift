@@ -64,6 +64,9 @@ final class NewsViewController: UIViewController {
         let nibCell: UINib = UINib(nibName: String(describing: NewsCollectionViewCell.self), bundle: nil)
         collectionView.register(nibCell, forCellWithReuseIdentifier: String(describing: NewsCollectionViewCell.self))
 
+        collectionView.dragDelegate = self
+        collectionView.dropDelegate = self
+        collectionView.dragInteractionEnabled = true
         collectionView.delegate = self
         collectionView.dataSource = self
     }
@@ -82,8 +85,18 @@ final class NewsViewController: UIViewController {
         presenter.refreshData()
     }
     
-    func endRefreshing() {
-        refreshControl.endRefreshing()
+    private func reorderItems(coordinator: UICollectionViewDropCoordinator, destinationIndexPath: IndexPath, collectionView: UICollectionView) {
+        if let item: UICollectionViewDropItem = coordinator.items.first,
+           let sourceIndexPath: IndexPath = item.sourceIndexPath {
+            collectionView.performBatchUpdates({
+                presenter.reorderItems(sourceIndexPath: sourceIndexPath.item, destinationIndexPath: destinationIndexPath.item)
+                                
+                collectionView.deleteItems(at: [sourceIndexPath])
+                collectionView.insertItems(at: [destinationIndexPath])
+                
+            }, completion: nil)
+            coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
+        }
     }
 }
 
@@ -94,6 +107,55 @@ extension NewsViewController: INewsViewController {
 
     func setupTopContainer(with viewModel: NewsTopContainerViewModel) {
         navigationItem.title = viewModel.title
+    }
+    
+    func endRefreshing() {
+        refreshControl.endRefreshing()
+    }
+}
+
+extension NewsViewController: UICollectionViewDragDelegate {
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let indexTabBarVC: Int? = tabBarController?.selectedIndex
+        if indexTabBarVC == 3 {
+            
+            var id: Int = 0
+            switch presenter.viewModel.cellModels[indexPath.row] {
+            case .defaultCell(let model):
+                id = model.id
+            }
+            
+            let item: String = id.description
+            let itemProvider: NSItemProvider = NSItemProvider(object: item as NSString)
+            let dragItem: UIDragItem = UIDragItem(itemProvider: itemProvider)
+            dragItem.localObject = item
+            
+            return [dragItem]
+        }
+        return []
+    }
+}
+
+extension NewsViewController: UICollectionViewDropDelegate {
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        if collectionView.hasActiveDrag {
+            return UICollectionViewDropProposal(operation: .move, intent: .insertAtDestinationIndexPath)
+        }
+        return UICollectionViewDropProposal(operation: .forbidden)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        var destinationIndexPath: IndexPath
+        if let indexPath: IndexPath = coordinator.destinationIndexPath {
+            destinationIndexPath = indexPath
+        } else {
+            let row: Int = collectionView.numberOfItems(inSection: 0)
+            destinationIndexPath = IndexPath(item: row - 1, section: 0)
+        }
+        
+        if coordinator.proposal.operation == .move {
+            reorderItems(coordinator: coordinator, destinationIndexPath: destinationIndexPath, collectionView: collectionView)
+        }
     }
 }
 
@@ -128,11 +190,27 @@ extension NewsViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
-//        if let cell = self.collectionView.cellForItem(at: indexPath) as? NewsCollectionViewCell {
-//            cell.transform = .init(scaleX: 1.1, y: 1.1)
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let indexTabBarVC: Int? = tabBarController?.selectedIndex
+        if indexTabBarVC != 3 {
+            
+            let config: UIContextMenuConfiguration = UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: { () -> UIViewController? in
+
+                let viewController: UIViewController = DescriptionAssembly().assemble(newsModel: self.presenter.news[indexPath.row])
+                return viewController
+            }, actionProvider: nil)
+            return config
+        }
+        return nil
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard let vc = animator.previewViewController else { return }
+
+        animator.addCompletion {
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension NewsViewController: UICollectionViewDelegateFlowLayout {

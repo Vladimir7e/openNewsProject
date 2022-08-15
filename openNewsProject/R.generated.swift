@@ -130,6 +130,47 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
+  /// This `R.info` struct is generated, and contains static references to 1 properties.
+  struct info {
+    struct uiApplicationShortcutItems {
+      struct emailed {
+        static let _key = "Emailed"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Emailed"], key: "UIApplicationShortcutItemTitle") ?? "Emailed"
+        static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Emailed"], key: "UIApplicationShortcutItemType") ?? "Emailed"
+
+        fileprivate init() {}
+      }
+
+      struct favorites {
+        static let _key = "Favorites"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Favorites"], key: "UIApplicationShortcutItemTitle") ?? "Favorites"
+        static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Favorites"], key: "UIApplicationShortcutItemType") ?? "Favorites"
+
+        fileprivate init() {}
+      }
+
+      struct shared {
+        static let _key = "Shared"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Shared"], key: "UIApplicationShortcutItemTitle") ?? "Shared"
+        static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Shared"], key: "UIApplicationShortcutItemType") ?? "Shared"
+
+        fileprivate init() {}
+      }
+
+      struct viewed {
+        static let _key = "Viewed"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Viewed"], key: "UIApplicationShortcutItemTitle") ?? "Viewed"
+        static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Viewed"], key: "UIApplicationShortcutItemType") ?? "Viewed"
+
+        fileprivate init() {}
+      }
+
+      fileprivate init() {}
+    }
+
+    fileprivate init() {}
+  }
+
   /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `DetailViewController`.

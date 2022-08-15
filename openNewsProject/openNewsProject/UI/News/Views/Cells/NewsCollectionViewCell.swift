@@ -21,6 +21,11 @@ class NewsCollectionViewCell: UICollectionViewCell, ViewIdentifiable, CellSizePr
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+//        let view: UIView = UIView(frame: bounds)
+//        view.frame = .infinite
+//        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
+//        self.selectedBackgroundView = view
     }
     
     override func prepareForReuse() {

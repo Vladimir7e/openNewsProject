@@ -56,6 +56,7 @@ class DescriptionViewController: UIViewController {
 
     private func setupUIElements() {
         let margins: UILayoutGuide = view.layoutMarginsGuide
+        view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         scrollView.addSubview(stackView)
         stackView.addArrangedSubview(titleLabel)
@@ -94,7 +95,9 @@ class DescriptionViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         
         readMoreButton.setTitle("read more", for: .normal)
-        readMoreButton.backgroundColor = UIColor.red
+        readMoreButton.setTitleColor(.white, for: .normal)
+        readMoreButton.setTitleColor(.black, for: .highlighted)
+        readMoreButton.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         readMoreButton.translatesAutoresizingMaskIntoConstraints = false
     }
         

@@ -16,7 +16,9 @@ protocol INewsPresenter: AnyObject {
     func viewDidLoad()
     func viewWillAppear()
     func refreshData()
-    var viewModel: NewsViewModel { get }
+    func reorderItems(sourceIndexPath: Int, destinationIndexPath: Int)
+    var viewModel: NewsViewModel { get set }
+    var news: [News] { get }
 }
 
 class NewsPresenter {
@@ -29,7 +31,8 @@ class NewsPresenter {
     let newsType: ModelType
     
     // Properties
-    private(set) var viewModel: NewsViewModel = .empty
+    var viewModel: NewsViewModel = .empty
+    var news: [News] = []
     var isFirstAppear: Bool = true
     
     // MARK: - Initialization
@@ -54,7 +57,8 @@ class NewsPresenter {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let response):
-                    self?.updateModel(with: response.results)
+                    self?.news = response.results
+                    self?.updateModel()
                     self?.view?.reloadData()
                 case .failure(let error):
                     self?.view?.presentErrorAlert(item: error)
@@ -65,7 +69,7 @@ class NewsPresenter {
         }
     }
 
-    private func updateModel(with news: [News]) {
+    private func updateModel() {
         viewModel = viewModelFactory.makeViewModel(newsModels: news, actions: self)
     }
 }
@@ -86,6 +90,13 @@ extension NewsPresenter: INewsPresenter {
     
     func refreshData() {
         getNews()
+    }
+    
+    func reorderItems(sourceIndexPath: Int, destinationIndexPath: Int) {
+        let element: CellViewModel = viewModel.cellModels.remove(at: sourceIndexPath)
+        viewModel.cellModels.insert(element, at: destinationIndexPath)
+        
+        storage.reorderItemsCoreData(sourceRow: sourceIndexPath, destinationRow: destinationIndexPath)
     }
 }
 

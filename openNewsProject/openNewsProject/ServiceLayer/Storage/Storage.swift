@@ -13,6 +13,7 @@ protocol Storable {
     func save(model: DescriptionViewModel)
     func fetchData() -> [DescriptionViewModel]
     func remove(id: Int)
+    func reorderItemsCoreData(sourceRow: Int, destinationRow: Int)
 }
 
 class Storage: Storable {
@@ -89,6 +90,19 @@ class Storage: Storable {
             } catch {
                 print("Error")
             }
+        }
+    }
+    
+    func reorderItemsCoreData(sourceRow: Int, destinationRow: Int) {
+        var arr: [DescriptionViewModel] = fetchData()
+        arr.forEach { model in
+            remove(id: model.id)
+        }
+        
+        let elementCoreData: DescriptionViewModel = arr.remove(at: sourceRow)
+        arr.insert(elementCoreData, at: destinationRow)
+        arr.forEach { model in
+            save(model: model)
         }
     }
 }

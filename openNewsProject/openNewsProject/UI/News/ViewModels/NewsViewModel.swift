@@ -9,7 +9,7 @@ import Foundation
 
 struct NewsViewModel {
     static let empty: NewsViewModel = .init(cellModels: [])
-    let cellModels: [CellViewModel]
+    var cellModels: [CellViewModel]
 }
 
 enum CellViewModel {
