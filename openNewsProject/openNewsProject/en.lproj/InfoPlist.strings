@@ -1,0 +1,11 @@
+//
+//  InfoPlist.strings
+//  openNewsProject
+//
+//  Created by Developer on 17.08.2022.
+//
+
+EMAILED_ITEM_SHORTCUT_TITLE = "Emailed";
+SHARED_ITEM_SHORTCUT_TITLE = "Shared";
+VIEWED_ITEM_SHORTCUT_TITLE = "Viewed";
+FAVORITES_ITEM_SHORTCUT_TITLE = "Favorites";

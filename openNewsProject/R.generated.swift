@@ -135,7 +135,7 @@ struct R: Rswift.Validatable {
     struct uiApplicationShortcutItems {
       struct emailed {
         static let _key = "Emailed"
-        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Emailed"], key: "UIApplicationShortcutItemTitle") ?? "Emailed"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Emailed"], key: "UIApplicationShortcutItemTitle") ?? "EMAILED_ITEM_SHORTCUT_TITLE"
         static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Emailed"], key: "UIApplicationShortcutItemType") ?? "Emailed"
 
         fileprivate init() {}
@@ -143,7 +143,7 @@ struct R: Rswift.Validatable {
 
       struct favorites {
         static let _key = "Favorites"
-        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Favorites"], key: "UIApplicationShortcutItemTitle") ?? "Favorites"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Favorites"], key: "UIApplicationShortcutItemTitle") ?? "FAVORITES_ITEM_SHORTCUT_TITLE"
         static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Favorites"], key: "UIApplicationShortcutItemType") ?? "Favorites"
 
         fileprivate init() {}
@@ -151,7 +151,7 @@ struct R: Rswift.Validatable {
 
       struct shared {
         static let _key = "Shared"
-        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Shared"], key: "UIApplicationShortcutItemTitle") ?? "Shared"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Shared"], key: "UIApplicationShortcutItemTitle") ?? "SHARED_ITEM_SHORTCUT_TITLE"
         static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Shared"], key: "UIApplicationShortcutItemType") ?? "Shared"
 
         fileprivate init() {}
@@ -159,7 +159,7 @@ struct R: Rswift.Validatable {
 
       struct viewed {
         static let _key = "Viewed"
-        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Viewed"], key: "UIApplicationShortcutItemTitle") ?? "Viewed"
+        static let uiApplicationShortcutItemTitle = infoPlistString(path: ["UIApplicationShortcutItems", "Viewed"], key: "UIApplicationShortcutItemTitle") ?? "VIEWED_ITEM_SHORTCUT_TITLE"
         static let uiApplicationShortcutItemType = infoPlistString(path: ["UIApplicationShortcutItems", "Viewed"], key: "UIApplicationShortcutItemType") ?? "Viewed"
 
         fileprivate init() {}
@@ -227,15 +227,101 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.string` struct is generated, and contains static references to 2 localization tables.
+  /// This `R.string` struct is generated, and contains static references to 3 localization tables.
   struct string {
+    /// This `R.string.infoPlist` struct is generated, and contains static references to 4 localization keys.
+    struct infoPlist {
+      /// en translation: Emailed
+      ///
+      /// Locales: uk, en
+      static let emailed_ITEM_SHORTCUT_TITLE = Rswift.StringResource(key: "EMAILED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: R.hostingBundle, locales: ["uk", "en"], comment: nil)
+      /// en translation: Favorites
+      ///
+      /// Locales: uk, en
+      static let favorites_ITEM_SHORTCUT_TITLE = Rswift.StringResource(key: "FAVORITES_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: R.hostingBundle, locales: ["uk", "en"], comment: nil)
+      /// en translation: Shared
+      ///
+      /// Locales: uk, en
+      static let shared_ITEM_SHORTCUT_TITLE = Rswift.StringResource(key: "SHARED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: R.hostingBundle, locales: ["uk", "en"], comment: nil)
+      /// en translation: Viewed
+      ///
+      /// Locales: uk, en
+      static let viewed_ITEM_SHORTCUT_TITLE = Rswift.StringResource(key: "VIEWED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: R.hostingBundle, locales: ["uk", "en"], comment: nil)
+
+      /// en translation: Emailed
+      ///
+      /// Locales: uk, en
+      static func emailed_ITEM_SHORTCUT_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("EMAILED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "InfoPlist", preferredLanguages: preferredLanguages) else {
+          return "EMAILED_ITEM_SHORTCUT_TITLE"
+        }
+
+        return NSLocalizedString("EMAILED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Favorites
+      ///
+      /// Locales: uk, en
+      static func favorites_ITEM_SHORTCUT_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("FAVORITES_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "InfoPlist", preferredLanguages: preferredLanguages) else {
+          return "FAVORITES_ITEM_SHORTCUT_TITLE"
+        }
+
+        return NSLocalizedString("FAVORITES_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Shared
+      ///
+      /// Locales: uk, en
+      static func shared_ITEM_SHORTCUT_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("SHARED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "InfoPlist", preferredLanguages: preferredLanguages) else {
+          return "SHARED_ITEM_SHORTCUT_TITLE"
+        }
+
+        return NSLocalizedString("SHARED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Viewed
+      ///
+      /// Locales: uk, en
+      static func viewed_ITEM_SHORTCUT_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("VIEWED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "InfoPlist", preferredLanguages: preferredLanguages) else {
+          return "VIEWED_ITEM_SHORTCUT_TITLE"
+        }
+
+        return NSLocalizedString("VIEWED_ITEM_SHORTCUT_TITLE", tableName: "InfoPlist", bundle: bundle, comment: "")
+      }
+
+      fileprivate init() {}
+    }
+
     /// This `R.string.launchScreen` struct is generated, and contains static references to 0 localization keys.
     struct launchScreen {
       fileprivate init() {}
     }
 
-    /// This `R.string.localizable` struct is generated, and contains static references to 11 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 14 localization keys.
     struct localizable {
+      /// en translation: Close
+      ///
+      /// Locales: en, uk
+      static let close = Rswift.StringResource(key: "close", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Emailed
       ///
       /// Locales: en, uk
@@ -264,6 +350,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, uk
       static let ok = Rswift.StringResource(key: "ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      /// en translation: Share
+      ///
+      /// Locales: en, uk
+      static let share = Rswift.StringResource(key: "share", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: Shared
       ///
       /// Locales: en, uk
@@ -276,10 +366,29 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, uk
       static let delete = Rswift.StringResource(key: "delete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+      /// en translation: read more
+      ///
+      /// Locales: en, uk
+      static let readMore = Rswift.StringResource(key: "read more", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
       /// en translation: save
       ///
       /// Locales: en, uk
       static let save = Rswift.StringResource(key: "save", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "uk"], comment: nil)
+
+      /// en translation: Close
+      ///
+      /// Locales: en, uk
+      static func close(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("close", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "close"
+        }
+
+        return NSLocalizedString("close", bundle: bundle, comment: "")
+      }
 
       /// en translation: Emailed
       ///
@@ -386,6 +495,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("ok", bundle: bundle, comment: "")
       }
 
+      /// en translation: Share
+      ///
+      /// Locales: en, uk
+      static func share(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("share", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "share"
+        }
+
+        return NSLocalizedString("share", bundle: bundle, comment: "")
+      }
+
       /// en translation: Shared
       ///
       /// Locales: en, uk
@@ -429,6 +553,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("delete", bundle: bundle, comment: "")
+      }
+
+      /// en translation: read more
+      ///
+      /// Locales: en, uk
+      static func readMore(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("read more", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "read more"
+        }
+
+        return NSLocalizedString("read more", bundle: bundle, comment: "")
       }
 
       /// en translation: save

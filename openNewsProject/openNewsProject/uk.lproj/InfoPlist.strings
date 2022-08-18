@@ -1,0 +1,11 @@
+//
+//  InfoPlist.strings
+//  openNewsProject
+//
+//  Created by Developer on 17.08.2022.
+//
+
+EMAILED_ITEM_SHORTCUT_TITLE = "Надіслані ел. поштою";
+SHARED_ITEM_SHORTCUT_TITLE = "Поширенi";
+VIEWED_ITEM_SHORTCUT_TITLE = "Переглянутi";
+FAVORITES_ITEM_SHORTCUT_TITLE = "Збережене";

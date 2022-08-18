@@ -24,6 +24,13 @@ final class NewsRouter: INewsRouter {
         self.descriptionAssembly = descriptionAssembly
     }
     
+//    func showDescriptionScreen(newsModel: News) {
+//        let viewController: UIViewController = descriptionAssembly.assemble(newsModel: newsModel)
+//        let nc: UINavigationController = UINavigationController(rootViewController: viewController)
+//        nc.modalPresentationStyle = .overFullScreen
+//        transitionHandler?.navigationController?.present(nc, animated: true, completion: nil)
+//    }
+    
     func showDescriptionScreen(newsModel: News) {
         let viewController: UIViewController = descriptionAssembly.assemble(newsModel: newsModel)
         transitionHandler?.navigationController?.pushViewController(viewController, animated: true)

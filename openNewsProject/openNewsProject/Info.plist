@@ -8,25 +8,25 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>Emailed</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Emailed</string>
+			<string>EMAILED_ITEM_SHORTCUT_TITLE</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemType</key>
 			<string>Shared</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Shared</string>
+			<string>SHARED_ITEM_SHORTCUT_TITLE</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemType</key>
 			<string>Viewed</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Viewed</string>
+			<string>VIEWED_ITEM_SHORTCUT_TITLE</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemType</key>
 			<string>Favorites</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Favorites</string>
+			<string>FAVORITES_ITEM_SHORTCUT_TITLE</string>
 		</dict>
 	</array>
 </dict>

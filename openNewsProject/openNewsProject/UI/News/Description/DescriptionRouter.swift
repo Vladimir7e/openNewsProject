@@ -9,7 +9,7 @@ import UIKit
 
 protocol IDescriptionRouter {
     func showDetailScreen(detailViewModel: DetailViewModel)
-
+    func showSharingScreen(url: URL)
 }
 
 final class DescriptionRouter: IDescriptionRouter {
@@ -28,5 +28,10 @@ final class DescriptionRouter: IDescriptionRouter {
     func showDetailScreen(detailViewModel: DetailViewModel) {
         let viewController: UIViewController = detailAssembly.assemble(detailViewModel: detailViewModel)
         transitionHandler?.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func showSharingScreen(url: URL) {
+        let activityVC: UIActivityViewController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        transitionHandler?.present(activityVC, animated: true)
     }
 }

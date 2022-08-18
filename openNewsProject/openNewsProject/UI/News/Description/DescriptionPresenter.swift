@@ -12,12 +12,14 @@ protocol IDescriptionPresenter: AnyObject {
     func viewDidLoad()
     func didTapRightItemButton(isSelected: Bool)
     func didTapDetailScreenButton()
+    var viewModel: DescriptionViewModel? { get }
+    func didTapShareButton()
 }
 
 class DescriptionPresenter {
     // Dependencies
     weak var view: IDescriptionViewController?
-    private var viewModel: DescriptionViewModel?
+    internal var viewModel: DescriptionViewModel?
     private let viewModelFactory: IDescriptionViewModelFactory
     private let router: IDescriptionRouter
     private let newsModel: News
@@ -83,5 +85,12 @@ extension DescriptionPresenter: IDescriptionPresenter {
             return
         }
         router.showDetailScreen(detailViewModel: DetailViewModel(id: viewModel.id, title: viewModel.title, url: viewModel.url))
+    }
+    
+    func didTapShareButton() {
+        guard let  url: URL = URL(string: viewModel?.url ?? "") else {
+            return
+        }
+        router.showSharingScreen(url: url)
     }
 }

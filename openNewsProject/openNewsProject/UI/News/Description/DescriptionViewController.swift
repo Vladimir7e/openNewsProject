@@ -27,6 +27,7 @@ class DescriptionViewController: UIViewController {
     private let descriptionLabel: UILabel = UILabel()
     private lazy var readMoreButton: UIButton = UIButton(type: .system)
     private lazy var saveButton: UIButton = UIButton(type: .system)
+    private lazy var shareButton: UIButton = UIButton(type: .system)
 
     // MARK: - Initialization
     init(
@@ -52,6 +53,7 @@ class DescriptionViewController: UIViewController {
         setupNavigation()
         setupUIElements()
         setupSaveButton()
+        setupShareButton()
     }
 
     private func setupUIElements() {
@@ -94,7 +96,7 @@ class DescriptionViewController: UIViewController {
         
         descriptionLabel.numberOfLines = 0
         
-        readMoreButton.setTitle("read more", for: .normal)
+        readMoreButton.setTitle(R.string.localizable.readMore(), for: .normal)
         readMoreButton.setTitleColor(.white, for: .normal)
         readMoreButton.setTitleColor(.black, for: .highlighted)
         readMoreButton.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
@@ -102,7 +104,9 @@ class DescriptionViewController: UIViewController {
     }
         
     private func setupNavigation() {
-        navigationItem.rightBarButtonItem = .init(customView: saveButton)
+        let save: UIBarButtonItem = .init(customView: saveButton)
+        let share: UIBarButtonItem = .init(customView: shareButton)
+        navigationItem.rightBarButtonItems = [save, share]
     }
     
     private func setupSaveButton() {
@@ -115,6 +119,12 @@ class DescriptionViewController: UIViewController {
         saveButton.addTarget(self, action: #selector(didTabSaveButton(sender:)), for: .touchUpInside)
     }
     
+    private func setupShareButton() {
+        shareButton.setTitle(R.string.localizable.share(), for: .normal)
+        shareButton.setTitleColor(.black, for: .normal)
+        shareButton.addTarget(self, action: #selector(didTapShareButton(sender:)), for: .touchUpInside)
+    }
+    
     @objc private func didTabSaveButton(sender: UIButton) {
         sender.isSelected = !sender.isSelected
         presenter.didTapRightItemButton(isSelected: saveButton.isSelected)
@@ -122,6 +132,10 @@ class DescriptionViewController: UIViewController {
     
     @objc private func didTapReadMoreButton() {
         presenter.didTapDetailScreenButton()
+    }
+    
+    @objc private func didTapShareButton(sender: UIButton) {
+        presenter.didTapShareButton()
     }
 }
 
